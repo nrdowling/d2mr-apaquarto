@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.45">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Natalie Dowling">
+<meta name="keywords" content="R programming, ggplot2, data communication">
+<meta name="description" content="APAQUARTO EXAMPLE">
+
+<title>Example APA7 Manuscript Made with Quarto and apaquarto</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="apaquarto-manuscript_files/libs/clipboard/clipboard.min.js"></script>
+<script src="apaquarto-manuscript_files/libs/quarto-html/quarto.js"></script>
+<script src="apaquarto-manuscript_files/libs/quarto-html/popper.min.js"></script>
+<script src="apaquarto-manuscript_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="apaquarto-manuscript_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="apaquarto-manuscript_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="apaquarto-manuscript_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="apaquarto-manuscript_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="apaquarto-manuscript_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+<link rel="stylesheet" href="_extensions/wjschne/apaquarto/apa.css">
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="apaquarto-manuscript.docx"><i class="bi bi-file-word"></i>MS Word (apaquarto)</a></li><li><a href="apaquarto-manuscript.pdf"><i class="bi bi-file-pdf"></i>Typst (apaquarto)</a></li><li><a href="apaquarto-manuscript.pdf"><i class="bi bi-file-pdf"></i>PDF (apaquarto)</a></li></ul></div></div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content" id="quarto-document-content">
+
+
+
+
+<br>
+
+<br>
+
+<section id="title" class="level1 title unnumbered unlisted">
+<h1 class="title unnumbered unlisted">Example APA7 Manuscript Made with Quarto and apaquarto</h1>
+<div class="Author">
+<br>
+
+<p>Natalie Dowling</p>
+<p>MA Program in the Social Sciences, University of Chicago</p>
+</div>
+</section>
+<section id="author-note" class="level1 unnumbered unlisted AuthorNote">
+<h1 class="unnumbered unlisted AuthorNote">Author Note</h1>
+<p>This example is based on the apaquarto template, created by W. Joel Schneider as part of the apaquarto extension for the Quarto publishing system. This manuscript and all associated materials are a demonstration of how to use these systems for the purposes of the course “From Data to Manuscript in R.” The author is grateful Dr.&nbsp;Marisa Casillas for creating the original version of this course and to the teaching assistants and students who have contributed to its development in the years since.</p>
+<p>Author roles were classified using the Contributor Role Taxonomy (CRediT; https://credit.niso.org/) as follows: <em>Natalie Dowling</em><strong>: </strong>conceptualization and writing – original draft</p>
+<p>Correspondence concerning this article should be addressed to Natalie Dowling, MA Program in the Social Sciences, University of Chicago, 1155 E 60th St., Chicago, IL 60637, USA, Email: ndowling@uchicago.edu</p>
+</section>
+<section id="abstract" class="level1 unnumbered unlisted AuthorNote">
+<h1 class="unnumbered unlisted AuthorNote">Abstract</h1>
+<div class="AbstractFirstParagraph">
+<p>This document is a template demonstrating the apaquarto format. It includes examples of how to create figures and tables, as well as how to reference them in the text. The document is written in Quarto, a system for creating documents with R Markdown. The apaquarto extension provides a template for creating APA7-formatted manuscripts.</p>
+</div>
+<p><em>Keywords</em>: R programming, ggplot2, data communication</p>
+</section>
+<section id="firstheader" class="level1 title unnumbered unlisted">
+<h1 class="title unnumbered unlisted">Example APA7 Manuscript Made with Quarto and apaquarto</h1>
+<p>This document is a template demonstrating the apaquarto format. It includes examples of how to create figures and tables, as well as how to reference them in the text. The document is written in Quarto, a system for creating documents with R Markdown. The apaquarto extension provides a template for creating APA7-formatted manuscripts.</p>
+<p>When rendered into html, pdf, or Word, this example produces an APA styled manuscript. Although the contents of the manuscript are not what you would expect in a psychology journal article, the formatting should demonstrate both the capabilities of the apaquarto extension and the basic template an actual manuscript would follow.</p>
+<p>You can learn more about APA style in the <a href="https://apastyle.apa.org/">APA Style Manual</a>. Details about creating documents using the apaquarto extension in the <a href="https://wjschne.github.io/apaquarto/writing.html#headings-in-apa-style">documentation</a>.</p>
+<p>The example demonstrates the mechanics of markdown manuscripts using Quarto and the apaquarto extension, specifically. While many of the topics covered are the same in other markdown systems, like the older R Markdown or the <code>papaja</code> package, the specific syntax and options may differ.</p>
+<section id="literature-review" class="level2">
+<h2 data-anchor-id="literature-review">Literature Review</h2>
+<!-- This section will feature use of BibTeX citations. -->
+</section>
+<section id="methods" class="level2">
+<h2 data-anchor-id="methods">Methods</h2>
+<section id="tables" class="level3">
+<h3 data-anchor-id="tables">Tables</h3>
+<p>In this section, we will go over how to create, render, and reference tables in apaquarto documents.</p>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 data-anchor-id="results">Results</h2>
+<!-- This section will feature use of figures. -->
+<p>Figures can be created in R chunks and rendered as figures in the text. They can be referenced in the text and will be numbered in the order they are rendered.</p>
+<section id="figure-chunk-options" class="level3">
+<h3 data-anchor-id="figure-chunk-options">Figure chunk options</h3>
+<p>Figure chunks should use the quarto-preferred “comment style” chunk option settings. Minimally, they should include a label and a caption. The label should begin with “fig-” to be recognized as a figure. The caption should be a string in title case. The image (file or object) should be rendered in the chunk.</p>
+<div class="cell FigureWithoutNote" data-custom-style="FigureWithoutNote">
+<div class="cell-output-display">
+<div id="fig-iris-rendered-plot" class="quarto-float quarto-figure quarto-figure-center" data-fignum="1" prefix="">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-iris-rendered-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="FigureTitle" data-custom-style="FigureTitle">
+<p>Figure&nbsp;1</p>
+</div>
+<div class="Caption" data-custom-style="Caption">
+<p>The “Caption” (aka Title) of a Rendered Plot</p>
+</div>
+</figcaption>
+<div aria-describedby="fig-iris-rendered-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="apaquarto-manuscript_files/figure-html/fig-iris-rendered-plot-1.svg" class="img-fluid figure-img" width="624">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="AfterWithoutNote" data-custom-style="AfterWithoutNote">
+<p>In the chunk above, I produce <a href="#fig-iris-rendered-plot" class="quarto-xref" aria-expanded="false">Figure&nbsp;1</a> a scatterplot of the <code>iris</code> dataset. It renders from the chunk (it is not saved to an object) at the location of the chunk in the manuscript. I can reference this plot in the text as <code>@fig-iris-rendered-plot</code>, which will render as “Figure 1” in the rendered document.</p>
+</div>
+<p><a href="#fig-iris-rendered-plot" class="quarto-xref" aria-expanded="false">Figure&nbsp;1</a>, when rendered, has three components:</p>
+<ol type="1">
+<li>The plot itself</li>
+<li>The figure <em>label</em>, which is the word “Figure” and the generated number in the order it was rendered</li>
+<li>The figure caption, which is the title of the plot</li>
+</ol>
+<p>Take note that the <code>fig-cap</code> option that assigned the “caption” is actually assigning with APA7 would refer to as the “title” of the figure. The thing you probably think of when you hear caption – the explanatory text below the figure – is called a “note.” There is an option to include a note, but it is not required or included in this minimal example.</p>
+<p>There are several important things to note about the simple figure chunk above:</p>
+<ol type="1">
+<li>The chunk options are in the “comment style” format. They are preceded by <code>#|</code> and are within the chunk, not the chunk header (the ```<code>{r}</code> part).</li>
+<li>The first chunk option, label, is in the line <em>immediately following the chunk header</em>. This is important for the figure to be recognized as a figure. If there is anything above the label, including comments and whitespace, the figure will not render as a figure and the document may not render at all without error</li>
+<li>The label begins with “fig-”, which tells apaquarto that this is a figure. If the chunk has any other name, it will still render images in the chunk (including generated plots), but they will not be recognized as figures.</li>
+<li>The caption in the <code>fig-cap</code> option. As discussed above, this “caption” is the title of the figure and should be in title case, with no period.</li>
+</ol>
+<p><a href="#fig-iris-rendered-plot" class="quarto-xref" aria-expanded="false">Figure&nbsp;1</a> is rendered by actually creating a ggplot in the chunk. However, you can also create a ggplot object elsewhere and render it as a figure. This is useful if you want to use the same plot in multiple places in the document, or if you want to create a very complicated plot in a sourced script.</p>
+<p>Creating a chunk that assigns a plot to an object does not render the plot, since R code that assigns an object does not return anything. It only creates the object <code>iris_plot</code>. To render the plot, you need to call the object in a chunk with the figure options.</p>
+<div class="cell FigureWithoutNote" data-custom-style="FigureWithoutNote">
+<div class="cell-output-display">
+<div id="fig-iris-plot-object" class="quarto-float quarto-figure quarto-figure-center" data-fignum="2" prefix="">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-iris-plot-object-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="FigureTitle" data-custom-style="FigureTitle">
+<p>Figure&nbsp;2</p>
+</div>
+<div class="Caption" data-custom-style="Caption">
+<p>The Caption of a Rendered Plot Object</p>
+</div>
+</figcaption>
+<div aria-describedby="fig-iris-plot-object-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="apaquarto-manuscript_files/figure-html/fig-iris-plot-object-1.svg" class="img-fluid figure-img" width="624">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="AfterWithoutNote" data-custom-style="AfterWithoutNote">
+<p>I can render the plot in a separate chunk by calling the plot object <code>iris_plot</code> in the chunk. This will render the plot as a figure in the text. I can reference this plot as <a href="#fig-iris-plot-object" class="quarto-xref" aria-expanded="false">Figure&nbsp;2</a>.</p>
+</div>
+<p>Quarto, and the apaquarto extension, can accept many additional chunk options. Like the label and caption options, these are set in the comment style within the chunk. Here are some additional options that can be used in figure chunks:</p>
+<ol type="1">
+<li><code>apa-note</code>: A note that appears below the figure caption. This is the explanatory text that you might think of as a “caption” in other contexts. Unlike the options that follow, this is a feature of apaquarto specifically, not markdown or Quarto.</li>
+<li><code>fig-scap</code>: A short caption that appears in the list of figures. This is useful for long figure captions that are unwieldy in a list of figures.</li>
+<li><code>fig-alt</code>: Alt text for accessibility. This will appear if you render as HTML and is useful for screen readers.</li>
+<li><code>fig-align</code>: The alignment of the figure. This can be “left”, “right”, or “center” (the default).</li>
+<li><code>fig-width</code> and <code>fig-height</code>: The width and height of the figure in inches. This is useful for controlling the size of the figure in the rendered document. The default is 7 inches wide and 5 inches tall.</li>
+</ol>
+<div class="cell FigureWithNote" data-layout-align="right" data-apa-note="A note appearing below the figure." data-custom-style="FigureWithNote">
+<div class="cell-output-display">
+<div id="fig-plot-more-options" class="quarto-float quarto-figure quarto-figure-right" data-fig-align="right" prefix="" data-fignum="3" data-fig-scap="Short Cap. For Fig. Lists" alt="Alt text for accessibility">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-plot-more-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="FigureTitle" data-custom-style="FigureTitle">
+<p>Figure&nbsp;3</p>
+</div>
+<div class="Caption" data-custom-style="Caption">
+<p>A Plot With More Chunk Options</p>
+</div>
+</figcaption>
+<div aria-describedby="fig-plot-more-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="apaquarto-manuscript_files/figure-html/fig-plot-more-options-1.svg" class="img-fluid quarto-figure quarto-figure-right figure-img" data-fig-scap="Short Cap. For Fig. Lists" alt="Alt text for accessibility" width="480">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="FigureNote" data-custom-style="FigureNote">
+<p><em>Note</em>. A note appearing below the figure.</p>
+</div>
+<p>You can see all the effects of these chunk options in <a href="#fig-plot-more-options" class="quarto-xref" aria-expanded="false">Figure&nbsp;3</a>. The figure is aligned to the right, has a width of 5 inches and a height of 6 inches, and has a note below the caption. The short caption is what will appear in the list of figures, and the alt text will appear when a reader mouses over the figure in an HTML document (it does not do anything in pdf or Word documents).</p>
+<section id="referencing-figures" class="level4">
+<h4 data-anchor-id="referencing-figures">Referencing figures.</h4>
+<p>As seen in the text above, figures can be referenced in text using the <code>@</code> symbol followed by the figure label. This will render as “Figure X” in the rendered document, where X is the order in which the figure was rendered. The figure label should be unique and begin with “fig-” to be recognized as a figure.</p>
+<p>Plots are the only thing that count as figures. In APA documents, all images are typically treated as figures. You can include images as figures in your document by rendering them in a chunk using the <code>include_graphics()</code> function from the knitr package. Like with any other figure, the chunk required a label beginning with “fig-” and a caption and may take additional chunk options.</p>
+<p>For images, it’s usually better to use <code>out-width</code> or <code>out-height</code> rather than <code>fig-width</code> and <code>fig-height</code>. The image files already have an inherent size (unlike rendered plots), which can create problems when you try to give them new absolute dimensions (with the <code>fig-</code> options). The <code>out-</code> options let you use a relative sizing as a percentage, which is usually more reliable.</p>
+<div class="cell FigureWithNote" data-apa-note="From xkcd (#2456) by Randall Monroe" data-custom-style="FigureWithNote">
+<div class="cell-output-display">
+<div id="fig-xkcd-sci-papers" class="quarto-float quarto-figure quarto-figure-center" prefix="" data-fignum="4" alt="Others include &quot;We have incrementally improved the estimate of this coefficient,&quot; &quot;Maybe all these categories are wrong,&quot; and &quot;We found a way to make student volunteers worse at tasks.&quot;">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-xkcd-sci-papers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="FigureTitle" data-custom-style="FigureTitle">
+<p>Figure&nbsp;4</p>
+</div>
+<div class="Caption" data-custom-style="Caption">
+<p>Types of Scientific Papers</p>
+</div>
+</figcaption>
+<div aria-describedby="fig-xkcd-sci-papers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/xkcd-scientific-papers.png" class="img-fluid figure-img" style="width:40.0%" alt="Others include &quot;We have incrementally improved the estimate of this coefficient,&quot; &quot;Maybe all these categories are wrong,&quot; and &quot;We found a way to make student volunteers worse at tasks.&quot;">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="FigureNote" data-custom-style="FigureNote">
+<p><em>Note</em>. From xkcd (#2456) by Randall Monroe</p>
+</div>
+<p>Why not take the opportunity to look at a few more xkcd comics?</p>
+<p>When you knit this document to a pdf, knitr/Quarto will try to pick the best location to include it. If your image is very large, or if there is very little text between images, the location it chooses may not be precisely where you put the chunk. You can force the image to render exactly where the chunk is with the option <code>fig-pos: "H"</code>. Either way–the default or the forced hold–can produce unexpected consequences, so keep an eye out for issues and try out alternatives as needed.</p>
+<p>Back to xkcd. Here’s a good one about types of eclipses:</p>
+<div class="cell FigureWithNote" data-apa-note="From xkcd (#1880) by Randall Monroe" data-custom-style="FigureWithNote">
+<div class="cell-output-display">
+<div id="fig-xkcd-eclipses" class="quarto-float quarto-figure quarto-figure-center" data-fignum="5" prefix="" data-fig-pos="H">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-xkcd-eclipses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="FigureTitle" data-custom-style="FigureTitle">
+<p>Figure&nbsp;5</p>
+</div>
+<div class="Caption" data-custom-style="Caption">
+<p>Types of Eclipses</p>
+</div>
+</figcaption>
+<div aria-describedby="fig-xkcd-eclipses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/xkcd-eclipses.png" class="img-fluid figure-img" data-fig-pos="H">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="FigureNote" data-custom-style="FigureNote">
+<p><em>Note</em>. From xkcd (#1880) by Randall Monroe</p>
+</div>
+<p>And of course there’s this classic about literally everyone’s experience using git:</p>
+<div class="cell FigureWithNote" data-apa-note="From xkcd (#1597) by Randall Monroe" data-custom-style="FigureWithNote">
+<div class="cell-output-display">
+<div id="fig-xkcd-git" class="quarto-float quarto-figure quarto-figure-center" data-fignum="6" prefix="">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-xkcd-git-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="FigureTitle" data-custom-style="FigureTitle">
+<p>Figure&nbsp;6</p>
+</div>
+<div class="Caption" data-custom-style="Caption">
+<p>The Tragedy of git</p>
+</div>
+</figcaption>
+<div aria-describedby="fig-xkcd-git-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/xkcd-git.png" class="img-fluid figure-img">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="FigureNote" data-custom-style="FigureNote">
+<p><em>Note</em>. From xkcd (#1597) by Randall Monroe</p>
+</div>
+<p>Love a good xkcd. They’re all great, but right now <a href="#fig-xkcd-git" class="quarto-xref" aria-expanded="false">Figure&nbsp;6</a> really speaks to me. (You too, maybe?) <a href="#fig-xkcd-eclipses" class="quarto-xref" aria-expanded="false">Figure&nbsp;5</a> is good and it’s got a plot, but it’s not as relevant to our class as <a href="#fig-xkcd-sci-papers" class="quarto-xref" aria-expanded="false">Figure&nbsp;4</a> or <a href="#fig-xkcd-git" class="quarto-xref" aria-expanded="false">Figure&nbsp;6</a>.</p>
+<p>I have a point. Notice that the numbers assigned to each figure are based on the order in which they are rendered, not the order in which they are referenced.</p>
+</section>
+</section>
+<section id="analyses" class="level3">
+<h3 data-anchor-id="analyses">Analyses</h3>
+<p>In the next section, we will talk about running and referencing statistical analyses.</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

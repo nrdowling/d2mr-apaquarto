@@ -8,6 +8,7 @@
 
 # User-specific files
 .Ruserdata
+.DS_Store
 
 # Example code in package build process
 *-Ex.R
@@ -20,6 +21,7 @@
 
 # RStudio files
 .Rproj.user/
+*.Rproj
 
 # produced vignettes
 vignettes/*.html
@@ -47,3 +49,20 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Rendered files
+*.html
+*.pdf
+*_files
+*.tex
+
+# Local and instructor only docs
+localonly/
+*_IO_*
+
+# Exceptions
+## Rendered files for primary manuscript document
+!*apaquarto-manuscript.html
+!*apaquarto-manuscript.pdf
+!*apaquarto-manuscript.doc*
+
