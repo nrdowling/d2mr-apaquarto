@@ -121,6 +121,31 @@ The example demonstrates the mechanics of markdown manuscripts using Quarto and 
 
 In this section, we will go over how to create, render, and reference tables in apaquarto documents.
 
+For tables produced by executable code cells, include a label with a `tbl-` prefix to make them cross-referenceable. For example:
+
+```{r}
+#| label: tbl-iris
+#| tbl-cap: "Iris Data"
+
+kable(head(iris))
+```
+
+In the chunk above, I produce @tbl-iris a table of the first five rows of the `iris` dataset. It renders from the chunk (it is not saved to an object) at the location of the chunk in the manuscript. I can reference this table in the text as `@tbl-iris`, which will render as "Table 1" in the rendered document.
+
+@tbl-iris, when rendered, has three components:
+
+1. The table itself
+2. The table *label*, which is the word "Table" and the generated number in the order it was rendered
+3. The table caption, which is the title of the table
+
+Take note that the `tbl-cap` option that assigned the "caption" is actually assigning with APA7 would refer to as the "title" of the table.
+
+There are several important things to note about the simple figure chunk above:
+
+1. The chunk options are in the "comment style" format. They are preceded by `#|` and are within the chunk, not the chunk header (the ````{r}` part).
+2. The first chunk option, label, is in the line *immediately following the chunk header*. This is important for the table to be recognized as a table. If there is anything above the label, including comments and whitespace, the table will not render as a table and the document may not render at all without error
+3. The label begins with "tbl-", which tells apaquarto that this is a table. If the chunk has any other name, it will still render images in the chunk (including generated plots), but they will not be recognized as tables.
+4. The caption in the `tbl-cap` option. As discussed above, this "caption" is the title of the table and should be in title case, with no period.
 
 ## Results
 
