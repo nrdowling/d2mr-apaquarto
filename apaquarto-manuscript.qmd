@@ -32,12 +32,12 @@ author:
 author-note:
   disclosures:
     # Example: This article is based on the dissertation completed by [citation].  
-    related-report: This example is based on the apaquarto template, created by W. Joel Schneider as part of the apaquarto extension for the Quarto publishing system. This manuscript and all associated materials are a demonstration of how to use these systems for the purposes of the course "From Data to Manuscript in R."
+    related-report: This example is based on the apaquarto template, created by W. Joel Schneider as part of the apaquarto extension for the Quarto publishing system. 
     # Example: The authors are grateful to [Person] for [Reason].
-    gratitude: The author is grateful Dr. Marisa Casillas for creating the original version of this course and to the teaching assistants and students who have contributed to its development in the years since.
+    gratitude: The author is grateful Dr. Marisa Casillas for creating the original version of this course.
 abstract: "This document is a template demonstrating the apaquarto format. It includes examples of how to create figures and tables, as well as how to reference them in the text. The document is written in Quarto, a system for creating documents with R Markdown. The apaquarto extension provides a template for creating APA7-formatted manuscripts."
 # Put as many keywords at you like, separated by commmas (e.g., [reliability, validity, generalizability])
-keywords: [R programming, ggplot2, data communication, ]
+keywords: [R programming, ggplot2, data communication]
 # If true, tables and figures are mingled with the text instead of listed at the end of the document.
 floatsintext: true
 # Numbered lines (.pdf and .docx only)
