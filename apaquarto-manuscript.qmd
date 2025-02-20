@@ -37,7 +37,7 @@ author-note:
     gratitude: The author is grateful Dr. Marisa Casillas for creating the original version of this course and to the teaching assistants and students who have contributed to its development in the years since.
 abstract: "This document is a template demonstrating the apaquarto format. It includes examples of how to create figures and tables, as well as how to reference them in the text. The document is written in Quarto, a system for creating documents with R Markdown. The apaquarto extension provides a template for creating APA7-formatted manuscripts."
 # Put as many keywords at you like, separated by commmas (e.g., [reliability, validity, generalizability])
-keywords: [R programming, ggplot2, data communication, ]
+keywords: [R programming, ggplot2, data communication]
 # If true, tables and figures are mingled with the text instead of listed at the end of the document.
 floatsintext: true
 # Numbered lines (.pdf and .docx only)
@@ -60,14 +60,14 @@ language:
   citation-masked-date: "n.d."
   citation-masked-title: "Masked Title"
   email: "Email"
-  title-block-author-note: "Author Note"
-  title-block-correspondence-note: "Correspondence concerning this article should be addressed to"
-  title-block-role-introduction: "Author roles were classified using the Contributor Role Taxonomy (CRediT; https://credit.niso.org/) as follows:"
-  title-impact-statement: "Impact Statement"
+#  title-block-author-note: "Author Note"
+#  title-block-correspondence-note: "Correspondence concerning this article should be addressed to"
+#  title-block-role-introduction: "Author roles were classified using the Contributor Role Taxonomy (CRediT; https://credit.niso.org/) as follows:"
+#  title-impact-statement: "Impact Statement"
   references-meta-analysis: "References marked with an asterisk indicate studies included in the meta-analysis."
 format:
-  apaquarto-docx: default
   apaquarto-html: default
+  apaquarto-docx: default
   apaquarto-typst: 
     keep-typ: true
     list-of-figures: true
@@ -94,11 +94,14 @@ format:
 
 library(conflicted)
 library(tidyverse)
+library(papaja)
 library(flextable)
 library(ftExtra)
 library(knitr)
+library(broom)
 conflicts_prefer(dplyr::filter, .quiet = TRUE)
 conflicts_prefer(flextable::separate_header, .quiet = TRUE)
+conflicts_prefer(flextable::theme_apa, .quiet = TRUE)
 
 ```
 
@@ -146,6 +149,7 @@ There are several important things to note about the simple figure chunk above:
 2. The first chunk option, label, is in the line *immediately following the chunk header*. This is important for the table to be recognized as a table. If there is anything above the label, including comments and whitespace, the table will not render as a table and the document may not render at all without error
 3. The label begins with "tbl-", which tells apaquarto that this is a table. If the chunk has any other name, it will still render images in the chunk (including generated plots), but they will not be recognized as tables.
 4. The caption in the `tbl-cap` option. As discussed above, this "caption" is the title of the table and should be in title case, with no period.
+
 
 ## Results
 
@@ -281,6 +285,63 @@ Love a good xkcd. They're all great, but right now @fig-xkcd-git really speaks t
 
 I have a point. Notice that the numbers assigned to each figure are based on the order in which they are rendered, not the order in which they are referenced.
 
-### Analyses
+### Analyses & Inline Code
 
-In the next section, we will talk about running and referencing statistical analyses.
+In this section, we discuss running and referencing statistical analyses. 
+
+A critical component of using our D2MR workflow for reproducible research is the ability to seamlessly integrate references to objects and object elements into the narrative text of your publication. When you run a model or summary and then identify coefficients, summary stats, or other important values in the output, you *could* type out those values as literal, static text. This is not only time-consuming, it problematically opens the door for significant human error each time the values must be manually updated.
+
+Inline R code is an alternative that allows you to replace this static text with dynamic code. Rather than changing the $\beta$, $p$-value, mean, etc. every time any tiny thing in your data or code processes change, the values are calculated during the knitting process. You add the code once, then (ideally) never need to modify it so long as the structure of your data and modeling stays the same.
+
+Fundamentally, think about inline R code as a teeny-tiny code chunk that takes the "1-chunk-1-thing" rule to the extreme, so much so that the output of the whole thing is the same kind of thing you'd just type into a Word document otherwise. Everything within the code will run exactly like it's run in the console, meaning you can always quickly check how it will render when knit by just copying and pasting that code into your console in RStudio.
+
+The general format for inline R is a backtick[^*], then a space, then as much code as you like (remember, literally what you'd see if you copied and pasted it into the console), then a closing backtick:
+
+`` `r knitr::inline_expr("yourCodeHere()")` ``
+
+[^*]: If you want to make something appear as "verbatim" text that looks like code the way it shows up in this notebook, surround it in backticks without the "r" in front: `` `verbatim text` ``. If you want to include backticks within the literal code, smash your head against your desk until you give up.
+
+#### Referencing values from lists and tibbles
+
+In the following chunk, I create a vector, a list, and a tibble. These are basic R objects you'll need to extract references from often.
+
+```{r}
+#| label: create-ref-examples
+#| include: false
+
+ex_vector <- c("40", 30, "twenty", TRUE) # vectors are "lists" (but not R type lists) where everything is the same data type, so numeric 30 and logical TRUE are coerced to string
+str(ex_vector)
+
+ex_list <- list("40", 30, "twenty", TRUE) # actual lists can include multiple data types
+str(ex_list)
+
+ex_tibble <- starwars %>% select(name, height, mass, films) %>% na.omit()
+str(ex_tibble)
+
+```
+
+To reference a value from a vector, list, or tibble, you need to know the index of the value you want to reference. In R, indexing starts at 1[^3], so the first element of a vector, list, or tibble is at index 1. You can reference the value at a specific index by using the object name followed by square brackets containing the index. For example, to reference the second element of a vector `ex_vector`, you would write `ex_vector[2]`: `r ex_vector[2]`. 
+
+
+[^3]: This is probably the biggest reason I will never be a python person. I'm team counting-starts-at-1 all the way. It's the *1st* thing! There's a 1 right in the name!
+
+If you've got a list that is really a `list` and not a `vector` that you're casually calling a "list," it's a little weirder. `list` objects look like a series of values, but they are actually a series of other lists. If you referenced the second element of a `list` object `ex_list` with `ex_list[2]`, you would get a list that contains the second element: `r ex_list[2]`.[^4] To get the actual value, you need to reference the index of the value within the list. For example, to reference the second element of a `list` object `ex_list`, you would write `ex_list[[2]]`: `r ex_list[[2]]`.
+
+[^4]: Quarto is actually smart enough to know you're trying to reference the value and not the list, so if you use this in your markdown it will knit to the value. But if you're actually using it for any kind of programming (not just printing directly), you'll need to use the correct data type.
+
+You can reference values from a tibble in the same way you would reference values from a vector, but you have to index both the row and column. For example, to reference the value in the second row and third column of a tibble `ex_tibble`, you would write `ex_tibble[2, 3]`: `r ex_tibble[2, 3]`. 
+
+You can also use brackets to index by names. In a tibble, that usually means column/variable names, but you could use row names if your df has them. For example, to reference the value in the second row and the column named "mass" in a tibble `ex_tibble`, you would write `ex_tibble[2, "mass"]` to get the same as the above `ex_tibble[2,3]`: `r ex_tibble[2, "mass"]`.
+
+In your code, you'll often need to reference whole columns or rows, which you can do by omitting a value on either side of the comma. So to get the second row of `ex_tibble`, you would write `ex_tibble[2, ]`: `r ex_tibble[2, ]`. 
+
+You *can* call a tibble *row* in markdown and render it as text.
+
+To get the column named "mass" from `ex_tibble`, you would write `ex_tibble[, "mass"]`. If you don't include the comma, it will assume you want the variable. So `ex_tibble["mass"]` will return the column named "mass". More commonly, if you want to call a column or row, you can use the `$` operator. For example, to reference the column named "mass" from `ex_tibble`, you would write `ex_tibble$mass`. <!-- notice that all these are just backticks to display verbatim code, not inline r code -->
+
+You *cannot* call a tibble *column* in markdown and render it as text. (What would that even look like?)
+
+
+#### Issues
+
+Something knitting in a way you didn't expect? Check that the class of your output is what you think it should be. In particular, if you want something to appear as regular-old in-line text, it needs to be a *value* data type, like numeric, character, or logical. The `cor()` function, for example, results in a simple numeric value, while the `cor.test()` function results in an "htest" object. That object contains numeric values you can extract and reference, but if you try to reference it directly it won't knit.
