@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.5.54">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -36,6 +36,49 @@ ul.task-list li input[type="checkbox"] {
 <link href="apaquarto-manuscript_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="apaquarto-manuscript_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="_extensions/wjschne/apaquarto/apa.css">
 </head>
@@ -68,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="author-note" class="level1 unnumbered unlisted AuthorNote">
 <h1 class="unnumbered unlisted AuthorNote">Author Note</h1>
-<p>This example is based on the apaquarto template, created by W. Joel Schneider as part of the apaquarto extension for the Quarto publishing system. This manuscript and all associated materials are a demonstration of how to use these systems for the purposes of the course “From Data to Manuscript in R.” The author is grateful Dr.&nbsp;Marisa Casillas for creating the original version of this course and to the teaching assistants and students who have contributed to its development in the years since.</p>
+<p>This example is based on the apaquarto template, created by W. Joel Schneider as part of the apaquarto extension for the Quarto publishing system. The author is grateful Dr.&nbsp;Marisa Casillas for creating the original version of this course.</p>
 <p>Author roles were classified using the Contributor Role Taxonomy (CRediT; https://credit.niso.org/) as follows: <em>Natalie Dowling</em><strong>: </strong>conceptualization and writing – original draft</p>
 <p>Correspondence concerning this article should be addressed to Natalie Dowling, MA Program in the Social Sciences, University of Chicago, 1155 E 60th St., Chicago, IL 60637, USA, Email: ndowling@uchicago.edu</p>
 </section>
@@ -94,6 +137,97 @@ ul.task-list li input[type="checkbox"] {
 <section id="tables" class="level3">
 <h3 data-anchor-id="tables">Tables</h3>
 <p>In this section, we will go over how to create, render, and reference tables in apaquarto documents.</p>
+<p>For tables produced by executable code cells, include a label with a <code>tbl-</code> prefix to make them cross-referenceable. For example:</p>
+<div class="cell FigureWithoutNote" prefix="" data-tblnum="1" data-custom-style="FigureWithoutNote">
+<div id="tbl-iris" class="cell quarto-float quarto-figure quarto-figure-center" prefix="" data-tblnum="1">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-iris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="FigureTitle" data-custom-style="FigureTitle">
+<p>Table&nbsp;1</p>
+</div>
+<div class="Caption" data-custom-style="Caption">
+<p>Iris Data</p>
+</div>
+</figcaption>
+<div aria-describedby="tbl-iris-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Sepal.Length</th>
+<th style="text-align: right;">Sepal.Width</th>
+<th style="text-align: right;">Petal.Length</th>
+<th style="text-align: right;">Petal.Width</th>
+<th style="text-align: left;">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: left;">setosa</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4.9</td>
+<td style="text-align: right;">3.0</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: left;">setosa</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4.7</td>
+<td style="text-align: right;">3.2</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: left;">setosa</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4.6</td>
+<td style="text-align: right;">3.1</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: left;">setosa</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">3.6</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: left;">setosa</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5.4</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">0.4</td>
+<td style="text-align: left;">setosa</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="AfterWithoutNote" data-custom-style="AfterWithoutNote">
+<p>In the chunk above, I produce <a href="#tbl-iris" class="quarto-xref" aria-expanded="false">Table&nbsp;1</a> a table of the first five rows of the <code>iris</code> dataset. It renders from the chunk (it is not saved to an object) at the location of the chunk in the manuscript. I can reference this table in the text as <code>@tbl-iris</code>, which will render as “Table 1” in the rendered document.</p>
+</div>
+<p><a href="#tbl-iris" class="quarto-xref" aria-expanded="false">Table&nbsp;1</a>, when rendered, has three components:</p>
+<ol type="1">
+<li>The table itself</li>
+<li>The table <em>label</em>, which is the word “Table” and the generated number in the order it was rendered</li>
+<li>The table caption, which is the title of the table</li>
+</ol>
+<p>Take note that the <code>tbl-cap</code> option that assigned the “caption” is actually assigning with APA7 would refer to as the “title” of the table.</p>
+<p>There are several important things to note about the simple figure chunk above:</p>
+<ol type="1">
+<li>The chunk options are in the “comment style” format. They are preceded by <code>#|</code> and are within the chunk, not the chunk header (the ```<code>{r}</code> part).</li>
+<li>The first chunk option, label, is in the line <em>immediately following the chunk header</em>. This is important for the table to be recognized as a table. If there is anything above the label, including comments and whitespace, the table will not render as a table and the document may not render at all without error</li>
+<li>The label begins with “tbl-”, which tells apaquarto that this is a table. If the chunk has any other name, it will still render images in the chunk (including generated plots), but they will not be recognized as tables.</li>
+<li>The caption in the <code>tbl-cap</code> option. As discussed above, this “caption” is the title of the table and should be in title case, with no period.</li>
+</ol>
 </section>
 </section>
 <section id="results" class="level2">
@@ -105,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Figure chunks should use the quarto-preferred “comment style” chunk option settings. Minimally, they should include a label and a caption. The label should begin with “fig-” to be recognized as a figure. The caption should be a string in title case. The image (file or object) should be rendered in the chunk.</p>
 <div class="cell FigureWithoutNote" data-custom-style="FigureWithoutNote">
 <div class="cell-output-display">
-<div id="fig-iris-rendered-plot" class="quarto-float quarto-figure quarto-figure-center" data-fignum="1" prefix="">
+<div id="fig-iris-rendered-plot" class="quarto-float quarto-figure quarto-figure-center" prefix="" data-fignum="1">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-iris-rendered-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="FigureTitle" data-custom-style="FigureTitle">
@@ -143,7 +277,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Creating a chunk that assigns a plot to an object does not render the plot, since R code that assigns an object does not return anything. It only creates the object <code>iris_plot</code>. To render the plot, you need to call the object in a chunk with the figure options.</p>
 <div class="cell FigureWithoutNote" data-custom-style="FigureWithoutNote">
 <div class="cell-output-display">
-<div id="fig-iris-plot-object" class="quarto-float quarto-figure quarto-figure-center" data-fignum="2" prefix="">
+<div id="fig-iris-plot-object" class="quarto-float quarto-figure quarto-figure-center" prefix="" data-fignum="2">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-iris-plot-object-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="FigureTitle" data-custom-style="FigureTitle">
@@ -173,7 +307,7 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <div class="cell FigureWithNote" data-layout-align="right" data-apa-note="A note appearing below the figure." data-custom-style="FigureWithNote">
 <div class="cell-output-display">
-<div id="fig-plot-more-options" class="quarto-float quarto-figure quarto-figure-right" data-fig-align="right" prefix="" data-fignum="3" data-fig-scap="Short Cap. For Fig. Lists" alt="Alt text for accessibility">
+<div id="fig-plot-more-options" class="quarto-float quarto-figure quarto-figure-right" data-fignum="3" data-fig-align="right" data-fig-scap="Short Cap. For Fig. Lists" prefix="" alt="Alt text for accessibility">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-plot-more-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="FigureTitle" data-custom-style="FigureTitle">
@@ -201,7 +335,7 @@ ul.task-list li input[type="checkbox"] {
 <p>For images, it’s usually better to use <code>out-width</code> or <code>out-height</code> rather than <code>fig-width</code> and <code>fig-height</code>. The image files already have an inherent size (unlike rendered plots), which can create problems when you try to give them new absolute dimensions (with the <code>fig-</code> options). The <code>out-</code> options let you use a relative sizing as a percentage, which is usually more reliable.</p>
 <div class="cell FigureWithNote" data-apa-note="From xkcd (#2456) by Randall Monroe" data-custom-style="FigureWithNote">
 <div class="cell-output-display">
-<div id="fig-xkcd-sci-papers" class="quarto-float quarto-figure quarto-figure-center" prefix="" data-fignum="4" alt="Others include &quot;We have incrementally improved the estimate of this coefficient,&quot; &quot;Maybe all these categories are wrong,&quot; and &quot;We found a way to make student volunteers worse at tasks.&quot;">
+<div id="fig-xkcd-sci-papers" class="quarto-float quarto-figure quarto-figure-center" data-fignum="4" prefix="" alt="Others include &quot;We have incrementally improved the estimate of this coefficient,&quot; &quot;Maybe all these categories are wrong,&quot; and &quot;We found a way to make student volunteers worse at tasks.&quot;">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-xkcd-sci-papers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="FigureTitle" data-custom-style="FigureTitle">
@@ -237,7 +371,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </figcaption>
 <div aria-describedby="fig-xkcd-eclipses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/xkcd-eclipses.png" class="img-fluid figure-img" data-fig-pos="H">
+<img src="images/xkcd-eclipses.png" class="img-fluid figure-img" data-fig-pos="H" width="213">
 </div>
 </figure>
 </div>
@@ -249,7 +383,7 @@ ul.task-list li input[type="checkbox"] {
 <p>And of course there’s this classic about literally everyone’s experience using git:</p>
 <div class="cell FigureWithNote" data-apa-note="From xkcd (#1597) by Randall Monroe" data-custom-style="FigureWithNote">
 <div class="cell-output-display">
-<div id="fig-xkcd-git" class="quarto-float quarto-figure quarto-figure-center" data-fignum="6" prefix="">
+<div id="fig-xkcd-git" class="quarto-float quarto-figure quarto-figure-center" prefix="" data-fignum="6">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-xkcd-git-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="FigureTitle" data-custom-style="FigureTitle">
@@ -260,7 +394,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </figcaption>
 <div aria-describedby="fig-xkcd-git-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/xkcd-git.png" class="img-fluid figure-img">
+<img src="images/xkcd-git.png" class="img-fluid figure-img" width="165">
 </div>
 </figure>
 </div>
@@ -273,14 +407,43 @@ ul.task-list li input[type="checkbox"] {
 <p>I have a point. Notice that the numbers assigned to each figure are based on the order in which they are rendered, not the order in which they are referenced.</p>
 </section>
 </section>
-<section id="analyses" class="level3">
-<h3 data-anchor-id="analyses">Analyses</h3>
-<p>In the next section, we will talk about running and referencing statistical analyses.</p>
+<section id="analyses-inline-code" class="level3">
+<h3 data-anchor-id="analyses-inline-code">Analyses &amp; Inline Code</h3>
+<p>In this section, we discuss running and referencing statistical analyses.</p>
+<p>A critical component of using our D2MR workflow for reproducible research is the ability to seamlessly integrate references to objects and object elements into the narrative text of your publication. When you run a model or summary and then identify coefficients, summary stats, or other important values in the output, you <em>could</em> type out those values as literal, static text. This is not only time-consuming, it problematically opens the door for significant human error each time the values must be manually updated.</p>
+<p>Inline R code is an alternative that allows you to replace this static text with dynamic code. Rather than changing the <span class="math inline">\beta</span>, <span class="math inline">p</span>-value, mean, etc. every time any tiny thing in your data or code processes change, the values are calculated during the knitting process. You add the code once, then (ideally) never need to modify it so long as the structure of your data and modeling stays the same.</p>
+<p>Fundamentally, think about inline R code as a teeny-tiny code chunk that takes the “1-chunk-1-thing” rule to the extreme, so much so that the output of the whole thing is the same kind of thing you’d just type into a Word document otherwise. Everything within the code will run exactly like it’s run in the console, meaning you can always quickly check how it will render when knit by just copying and pasting that code into your console in RStudio.</p>
+<p>The general format for inline R is a backtick<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, then a space, then as much code as you like (remember, literally what you’d see if you copied and pasted it into the console), then a closing backtick:</p>
+<p><code>`r yourCodeHere()`</code></p>
+<section id="referencing-values-from-lists-and-tibbles" class="level4">
+<h4 data-anchor-id="referencing-values-from-lists-and-tibbles">Referencing values from lists and tibbles.</h4>
+<p>In the following chunk, I create a vector, a list, and a tibble. These are basic R objects you’ll need to extract references from often.</p>
+<p>To reference a value from a vector, list, or tibble, you need to know the index of the value you want to reference. In R, indexing starts at 1<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, so the first element of a vector, list, or tibble is at index 1. You can reference the value at a specific index by using the object name followed by square brackets containing the index. For example, to reference the second element of a vector <code>ex_vector</code>, you would write <code>ex_vector[2]</code>: 30.</p>
+<p>If you’ve got a list that is really a <code>list</code> and not a <code>vector</code> that you’re casually calling a “list,” it’s a little weirder. <code>list</code> objects look like a series of values, but they are actually a series of other lists. If you referenced the second element of a <code>list</code> object <code>ex_list</code> with <code>ex_list[2]</code>, you would get a list that contains the second element: 30.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> To get the actual value, you need to reference the index of the value within the list. For example, to reference the second element of a <code>list</code> object <code>ex_list</code>, you would write <code>ex_list[[2]]</code>: 30.</p>
+<p>You can reference values from a tibble in the same way you would reference values from a vector, but you have to index both the row and column. For example, to reference the value in the second row and third column of a tibble <code>ex_tibble</code>, you would write <code>ex_tibble[2, 3]</code>: 75.</p>
+<p>You can also use brackets to index by names. In a tibble, that usually means column/variable names, but you could use row names if your df has them. For example, to reference the value in the second row and the column named “mass” in a tibble <code>ex_tibble</code>, you would write <code>ex_tibble[2, "mass"]</code> to get the same as the above <code>ex_tibble[2,3]</code>: 75.</p>
+<p>In your code, you’ll often need to reference whole columns or rows, which you can do by omitting a value on either side of the comma. So to get the second row of <code>ex_tibble</code>, you would write <code>ex_tibble[2, ]</code>: C-3PO, 167, 75, c(“A New Hope”, “The Empire Strikes Back”, “Return of the Jedi”, “The Phantom Menace”, “Attack of the Clones”, “Revenge of the Sith”).</p>
+<p>You <em>can</em> call a tibble <em>row</em> in markdown and render it as text.</p>
+<p>To get the column named “mass” from <code>ex_tibble</code>, you would write <code>ex_tibble[, "mass"]</code>. If you don’t include the comma, it will assume you want the variable. So <code>ex_tibble["mass"]</code> will return the column named “mass”. More commonly, if you want to call a column or row, you can use the <code>$</code> operator. For example, to reference the column named “mass” from <code>ex_tibble</code>, you would write <code>ex_tibble$mass</code>. <!-- notice that all these are just backticks to display verbatim code, not inline r code --></p>
+<p>You <em>cannot</em> call a tibble <em>column</em> in markdown and render it as text. (What would that even look like?)</p>
+</section>
+<section id="issues" class="level4">
+<h4 data-anchor-id="issues">Issues.</h4>
+<p>Something knitting in a way you didn’t expect? Check that the class of your output is what you think it should be. In particular, if you want something to appear as regular-old in-line text, it needs to be a <em>value</em> data type, like numeric, character, or logical. The <code>cor()</code> function, for example, results in a simple numeric value, while the <code>cor.test()</code> function results in an “htest” object. That object contains numeric values you can extract and reference, but if you try to reference it directly it won’t knit.</p>
+</section>
 </section>
 </section>
 </section>
 
-</main>
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>If you want to make something appear as “verbatim” text that looks like code the way it shows up in this notebook, surround it in backticks without the “r” in front: <code>`verbatim text`</code>. If you want to include backticks within the literal code, smash your head against your desk until you give up.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This is probably the biggest reason I will never be a python person. I’m team counting-starts-at-1 all the way. It’s the <em>1st</em> thing! There’s a 1 right in the name!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Quarto is actually smart enough to know you’re trying to reference the value and not the list, so if you use this in your markdown it will knit to the value. But if you’re actually using it for any kind of programming (not just printing directly), you’ll need to use the correct data type.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
