@@ -23,7 +23,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="apaquarto-manuscript_files/libs/clipboard/clipboard.min.js"></script>
@@ -124,16 +178,66 @@ window.Quarto = {
 </section>
 <section id="firstheader" class="level1 title unnumbered unlisted">
 <h1 class="title unnumbered unlisted">Example APA7 Manuscript Made with Quarto and apaquarto</h1>
-<p>This document is a template demonstrating the apaquarto format. It includes examples of how to create figures and tables, as well as how to reference them in the text. The document is written in Quarto, a system for creating documents with R Markdown. The apaquarto extension provides a template for creating APA7-formatted manuscripts.</p>
+<section id="introduction" class="level2">
+<h2 data-anchor-id="introduction">Introduction</h2>
+<p>This document is a template demonstrating the apaquarto format, to be used in the course From Data to Manuscript in R <span class="citation" data-cites="dowling_2025_data">(<a href="#ref-dowling_2025_data" role="doc-biblioref">Dowling, 2025</a>)</span>. It includes examples of how to create figures and tables, as well as how to reference them in the text. The document is written in Quarto, a system for creating documents with R Markdown. The apaquarto extension provides a template for creating APA7-formatted manuscripts.</p>
 <p>When rendered into html, pdf, or Word, this example produces an APA styled manuscript. Although the contents of the manuscript are not what you would expect in a psychology journal article, the formatting should demonstrate both the capabilities of the apaquarto extension and the basic template an actual manuscript would follow.</p>
-<p>You can learn more about APA style in the <a href="https://apastyle.apa.org/">APA Style Manual</a>. Details about creating documents using the apaquarto extension in the <a href="https://wjschne.github.io/apaquarto/writing.html#headings-in-apa-style">documentation</a>.</p>
+<p>You can learn more about APA style in the <a href="https://apastyle.apa.org/">APA Style Manual</a>. Details about creating documents using <span class="citation" data-cites="schneider_2025_apaquarto">Schneider (<a href="#ref-schneider_2025_apaquarto" role="doc-biblioref">2025</a>)</span> in the <a href="https://wjschne.github.io/apaquarto/">documentation</a>.</p>
 <p>The example demonstrates the mechanics of markdown manuscripts using Quarto and the apaquarto extension, specifically. While many of the topics covered are the same in other markdown systems, like the older R Markdown or the <code>papaja</code> package, the specific syntax and options may differ.</p>
-<section id="literature-review" class="level2">
-<h2 data-anchor-id="literature-review">Literature Review</h2>
-<!-- This section will feature use of BibTeX citations. -->
+<p>Your introduction should be a clear and concise explanation of the research question, the background of the problem, and the purpose of the study. It should include both a <a href="#sec-lit-review">Literature Review</a> and <a href="#sec-present-study">Present Study</a> section.</p>
+<section id="sec-lit-review" class="level3">
+<h3 data-anchor-id="sec-lit-review">Literature Review</h3>
+<p>The literature review includes citations to relevant research and other sources. Citing sources requires formatting according to some standardized style, like APA or Chicago Manual of Style. In this document, build with apaquarto, you should not be surprised to learn that we use APA style.</p>
+<p>Information about your references are stored in a consolidated .bib file, typically located in the same directory as your manuscript and conventionally named <code>bibliography.bib</code>. The bib file contains all the information needed to cite a source, including the author, title, publication date, and other relevant information. The information for any single source is attached to a unique key, which you can then use to cite the source in your text. You can reference a source from your bibliography the same way you’d reference a figure, table, or document section: with the <code>@</code> symbol followed by the key.</p>
+<p>For example, many of the readings for this class come from Hadley Wickham’s book <em>R for Data Science</em>. To cite this book, you would use <code>@wickhametal_2023_data</code> (the key assigned to it in the bibliography file). This will render as (Wickham, 2023) in the text and as a full citation in the references section at the end of the document.</p>
+<p>There are a few different formats you’ll need to know for citing sources in your text. Most commonly, you’ll want to cite the author(s) and the year of publication within a parenthetical citations (e.g., “Wickham, 2023”). Also common is the author name(s) in the text and then only the year in parentheses (e.g., “Wickham (2023)”).</p>
+<p>There’s simple syntax to do each of these with bibtex keys, but you can do more complex things, too. You can (among other things) cite multiple sources at once and have them automatically be alphabetized and formatted, specify chapters and page number, and add in-parenthetical information like “see also” or “for more information.” Let’s see some in action:</p>
+<p><span class="citation" data-cites="dowling_2025_data">Dowling (<a href="#ref-dowling_2025_data" role="doc-biblioref">2025</a>)</span> claims that Quarto is awesome. In fact, in Dowling’s UChicago course on the topic <span class="citation" data-cites="dowling_2025_data">(<a href="#ref-dowling_2025_data" role="doc-biblioref">2025</a>)</span>, she never seems to stop saying that RMarkdown is awesome. Of course, it is well established that RMarkdown and Quarto are, indeed, awesome <span class="citation" data-cites="xie_2018_bookdown dowling_2025_data schneider_2025_apaquarto">(<a href="#ref-dowling_2025_data" role="doc-biblioref">Dowling, 2025</a>; <a href="#ref-schneider_2025_apaquarto" role="doc-biblioref">Schneider, 2025</a>; <a href="#ref-xie_2018_bookdown" role="doc-biblioref">Xie, 2018</a>)</span>. Nearly everyone agrees on this very obvious point <span class="citation" data-cites="xie_2018_bookdown dowling_2025_data">(<a href="#ref-dowling_2025_data" role="doc-biblioref">Dowling, 2025</a>; e.g., <a href="#ref-xie_2018_bookdown" role="doc-biblioref">Xie, 2018</a>)</span>.</p>
+<p>You can include notes, like the “e.g.,” in the examples above, by simply adding it at the beginning of the list of keys. The added text will get “attached to” the first citation, so it’s important that you put it before whichever citation will actually show up first.</p>
+<p>For the most part, BibTeX will also handle alphabetical ordering of multiple citations within the same parenthetical citation <span class="citation" data-cites="wickhametal_2023_data dowling_2025_data">(<a href="#ref-dowling_2025_data" role="doc-biblioref">Dowling, 2025</a>; <a href="#ref-wickhametal_2023_data" role="doc-biblioref">Wickham, Cetinkaya-Rundel, et al., 2023</a>)</span>. That means that in the example in the previous paragraph, the text is attached to the “Xie” citation and so will render between “Dowling” and “Xie” once they are ordered.</p>
+<p>Oddly, if you put the extra text after the semicolon, it seems to just stop trying to order the citations and will render them in the order you put them in the text.</p>
+<p>If you use citr to add references, it will do the sorting before it adds the keys to your document, so you don’t have to worry about any of that</p>
+<p>In BibTeX, same-year, same-author publications are automatically disambiguated <span class="citation" data-cites="heritage_2012_epistemic heritage_2012_epistemics">(<a href="#ref-heritage_2012_epistemic" role="doc-biblioref">Heritage, 2012b</a>, <a href="#ref-heritage_2012_epistemics" role="doc-biblioref">2012a</a>)</span>.</p>
+<p>You can also include page numbers or chapters in your citations. For example, you can cite a specific chapter in a book like this: <span class="citation" data-cites="wickham_2016_ggplot2">(<a href="#ref-wickham_2016_ggplot2" role="doc-biblioref">Wickham, 2016a</a>, ch.&nbsp;1)</span>. This will render as (Wickham, 2016, ch.&nbsp;1) in the text and as a full citation in the references section at the end of the document. We learned all about ggplot <span class="citation" data-cites="wickham_2016_ggplot2">(see <a href="#ref-wickham_2016_ggplot2" role="doc-biblioref">Wickham, 2016a</a>, ch.&nbsp;1)</span>. The best introduction to ggplot is with <span class="citation" data-cites="wickham_2016_ggplot2">Wickham (<a href="#ref-wickham_2016_ggplot2" role="doc-biblioref">2016a</a>, ch.&nbsp;1)</span>.</p>
+<p>You know what else is awesome besides RMarkdown? Interactive gestures, which allow interlocutors to expediently facilitate conversation nonverbally <span class="citation" data-cites="bavelasetal_1992_interactive dowling_2022_obviously">(<a href="#ref-bavelasetal_1992_interactive" role="doc-biblioref">Bavelas et al., 1992</a>; <a href="#ref-dowling_2022_obviously" role="doc-biblioref">Dowling, 2022</a>)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Brackets and hyphens allows you to specify which part of the citation to include in parentheses (or at all). Briefly, brackets say the whole thing (whatever that may be) should be in parentheses and hyphens say the author name should be excluded.</p>
+<ul>
+<li>Brackets: <code>[@dowling_2025_data]</code> <span class="citation" data-cites="dowling_2025_data">(<a href="#ref-dowling_2025_data" role="doc-biblioref">Dowling, 2025</a>)</span></li>
+<li>No brackets: <code>@dowling_2025_data</code> <span class="citation" data-cites="dowling_2025_data">Dowling (<a href="#ref-dowling_2025_data" role="doc-biblioref">2025</a>)</span></li>
+<li>Brackets and hyphen: <code>[-@dowling_2025_data]</code> <span class="citation" data-cites="dowling_2025_data">(<a href="#ref-dowling_2025_data" role="doc-biblioref">2025</a>)</span></li>
+</ul>
+<!-- THIS BIT ABOUT REFERENCING SUBSECTIONS AND NOCITE NEEDS TO BE UPDATED FOR APAQUARTO -->
+<!-- We summarize our findings in subsection \@ref(disc) and note that subsection \@ref(refs)[^2] is unrelated to this report. Several texts used in the preparation of this manuscript but not directly cited are included in the references section because they are placed within the `nocite` section near the end of the RMarkdown document. -->
+<!-- [^2]: These two numbered references for the Discussion and References sections are generated dynamically by including a section label `{#whatever}` in the markdown header for the section. -->
+</section>
+<section id="sec-present-study" class="level3">
+<h3 data-anchor-id="sec-present-study">Present Study</h3>
+<p>The present “study” is a demonstration of the capabilities of the apaquarto extension for Quarto. It’s not a study, but whatever. This is the present study section.</p>
+</section>
 </section>
 <section id="methods" class="level2">
 <h2 data-anchor-id="methods">Methods</h2>
+<p>In this section, we will go over how to create, render, and reference tables in apaquarto documents.</p>
+<p>At some point in your methods section, you’ll want to say that you used R, and you may want to call out specific packages used for statistical analyses or plotting. You can do that automatically with the <code>papaja::r_refs()</code> and <code>papaja::cite_r()</code> functions.</p>
+<p>This process has three steps:</p>
+<ol type="1">
+<li>Modify the YAML bibliography option to be a bracketed list of both the .bib file you’re using for your regular references and a separate .bib file for your R references. For example, <code>bibliography: [bibliography.bib, r-references.bib]</code>.</li>
+<li>In a setup chunk at the beginning of your document, call <code>papaja::r_refs()</code> to generate the references for the packages you used in the specified .bib file. Run this <em>after</em> you load the packages you want to cite. Useful arguments:
+<ol type="1">
+<li>(Required) <code>file</code>: The name of the file you specified in the YAML bibliography option. The function will create the file if it doesn’t exist and overwrite it if it does.</li>
+<li>(Optional) <code>append = TRUE</code>: Set to <code>FALSE</code> to overwrite the file rather than add on missing references to the end. Useful if you are trying out different packages and know you won’t end up using them all.</li>
+<li>(Optional) <code>tweak = TRUE</code>: This function is a wrapper for <code>create_bib()</code>, and <code>tweak = TRUE</code> fixes some known issues with <code>create_bib()</code>. If it’s not working as expected, you can try setting <code>tweak = FALSE</code> and see if that helps.</li>
+</ol></li>
+<li>In the text, call <code>papaja::cite_r()</code> to insert the references where you want them. Useful arguments (all are optional):
+<ol type="1">
+<li>(Treat this like it’s required) <code>file = NULL</code>: To use this like we want, set this to name of the file you specified in the YAML bibliography option. This is the same file you used in <code>r_refs()</code>. If you don’t specify it, the default is <code>NULL</code>, which will cite <code>R</code> itself but no packages.</li>
+<li><code>footnote = FALSE</code>: By default, prints where you put it. If you set this to <code>TRUE</code>, it will print the references as a footnote. This is useful if you have a lot of packages and don’t want to clutter up your text.</li>
+<li><code>pkgs = NULL</code>: If you only want to cite specific packages, you can list them here. This is useful if you have a lot of packages and only want to cite a few.</li>
+<li><code>omit = FALSE</code>: Use together with <code>pkgs</code>. Set this to <code>TRUE</code> to <em>omit</em> the packages listed in <code>pkgs</code> from the citation.</li>
+</ol></li>
+</ol>
+<p>There are other ways to do this, and considering papaja doesn’t get regular updates it may be best to find a more reliable alternative. You can read about one other way to do so <a href="https://bookdown.org/yihui/rmarkdown-cookbook/write-bib.html">here</a> and do some googling for other options. At least for now the papaja functions are working and (IMO) easier to use.</p>
+<p>We used R <span class="citation" data-cites="R-base">(Version 4.4.2; <a href="#ref-R-base" role="doc-biblioref">R Core Team, 2024</a>)</span> and the R-packages <em>broom</em> <span class="citation" data-cites="R-broom">(Version 1.0.7; <a href="#ref-R-broom" role="doc-biblioref">Robinson et al., 2024</a>)</span>, <em>conflicted</em> <span class="citation" data-cites="R-conflicted">(Version 1.2.0; <a href="#ref-R-conflicted" role="doc-biblioref">Wickham, 2023a</a>)</span>, <em>dplyr</em> <span class="citation" data-cites="R-dplyr">(Version 1.1.4; <a href="#ref-R-dplyr" role="doc-biblioref">Wickham, François, et al., 2023</a>)</span>, <em>flextable</em> <span class="citation" data-cites="R-flextable">(Version 0.9.7; <a href="#ref-R-flextable" role="doc-biblioref">Gohel &amp; Skintzos, 2024</a>)</span>, <em>forcats</em> <span class="citation" data-cites="R-forcats">(Version 1.0.0; <a href="#ref-R-forcats" role="doc-biblioref">Wickham, 2023b</a>)</span>, <em>ftExtra</em> <span class="citation" data-cites="R-ftExtra">(Version 0.6.4; <a href="#ref-R-ftExtra" role="doc-biblioref">Yasumoto, 2024</a>)</span>, <em>ggplot2</em> <span class="citation" data-cites="R-ggplot2">(Version 3.5.1; <a href="#ref-R-ggplot2" role="doc-biblioref">Wickham, 2016b</a>)</span>, <em>knitr</em> <span class="citation" data-cites="R-knitr">(Version 1.49; <a href="#ref-R-knitr" role="doc-biblioref">Xie, 2015</a>)</span>, <em>lubridate</em> <span class="citation" data-cites="R-lubridate">(Version 1.9.4; <a href="#ref-R-lubridate" role="doc-biblioref">Grolemund &amp; Wickham, 2011</a>)</span>, <em>papaja</em> <span class="citation" data-cites="R-papaja">(Version 0.1.3; <a href="#ref-R-papaja" role="doc-biblioref">Aust &amp; Barth, 2024</a>)</span>, <em>purrr</em> <span class="citation" data-cites="R-purrr">(Version 1.0.4; <a href="#ref-R-purrr" role="doc-biblioref">Wickham &amp; Henry, 2025</a>)</span>, <em>readr</em> <span class="citation" data-cites="R-readr">(Version 2.1.5; <a href="#ref-R-readr" role="doc-biblioref">Wickham, Hester, et al., 2024</a>)</span>, <em>shiny</em> <span class="citation" data-cites="R-shiny">(Version 1.10.0; <a href="#ref-R-shiny" role="doc-biblioref">Chang et al., 2024</a>)</span>, <em>stringr</em> <span class="citation" data-cites="R-stringr">(Version 1.5.1; <a href="#ref-R-stringr" role="doc-biblioref">Wickham, 2023c</a>)</span>, <em>tibble</em> <span class="citation" data-cites="R-tibble">(Version 3.2.1; <a href="#ref-R-tibble" role="doc-biblioref">Müller &amp; Wickham, 2023</a>)</span>, <em>tidyr</em> <span class="citation" data-cites="R-tidyr">(Version 1.3.1; <a href="#ref-R-tidyr" role="doc-biblioref">Wickham, Vaughan, et al., 2024</a>)</span>, <em>tidyverse</em> <span class="citation" data-cites="R-tidyverse">(Version 2.0.0; <a href="#ref-R-tidyverse" role="doc-biblioref">Wickham et al., 2019</a>)</span> and <em>tinylabels</em> <span class="citation" data-cites="R-tinylabels">(Version 0.2.4; <a href="#ref-R-tinylabels" role="doc-biblioref">Barth, 2023</a>)</span> to prepare this document.</p>
 <section id="tables" class="level3">
 <h3 data-anchor-id="tables">Tables</h3>
 <p>In this section, we will go over how to create, render, and reference tables in apaquarto documents.</p>
@@ -235,7 +339,7 @@ window.Quarto = {
 <!-- This section will feature use of figures. -->
 <p>Figures can be created in R chunks and rendered as figures in the text. They can be referenced in the text and will be numbered in the order they are rendered.</p>
 <section id="figure-chunk-options" class="level3">
-<h3 data-anchor-id="figure-chunk-options">Figure chunk options</h3>
+<h3 data-anchor-id="figure-chunk-options">Figure Chunk Options</h3>
 <p>Figure chunks should use the quarto-preferred “comment style” chunk option settings. Minimally, they should include a label and a caption. The label should begin with “fig-” to be recognized as a figure. The caption should be a string in title case. The image (file or object) should be rendered in the chunk.</p>
 <div class="cell FigureWithoutNote" data-custom-style="FigureWithoutNote">
 <div class="cell-output-display">
@@ -307,7 +411,7 @@ window.Quarto = {
 </ol>
 <div class="cell FigureWithNote" data-layout-align="right" data-apa-note="A note appearing below the figure." data-custom-style="FigureWithNote">
 <div class="cell-output-display">
-<div id="fig-plot-more-options" class="quarto-float quarto-figure quarto-figure-right" data-fignum="3" data-fig-align="right" data-fig-scap="Short Cap. For Fig. Lists" prefix="" alt="Alt text for accessibility">
+<div id="fig-plot-more-options" class="quarto-float quarto-figure quarto-figure-right" prefix="" data-fig-align="right" alt="Alt text for accessibility" data-fig-scap="Short Cap. For Fig. Lists" data-fignum="3">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-plot-more-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="FigureTitle" data-custom-style="FigureTitle">
@@ -335,7 +439,7 @@ window.Quarto = {
 <p>For images, it’s usually better to use <code>out-width</code> or <code>out-height</code> rather than <code>fig-width</code> and <code>fig-height</code>. The image files already have an inherent size (unlike rendered plots), which can create problems when you try to give them new absolute dimensions (with the <code>fig-</code> options). The <code>out-</code> options let you use a relative sizing as a percentage, which is usually more reliable.</p>
 <div class="cell FigureWithNote" data-apa-note="From xkcd (#2456) by Randall Monroe" data-custom-style="FigureWithNote">
 <div class="cell-output-display">
-<div id="fig-xkcd-sci-papers" class="quarto-float quarto-figure quarto-figure-center" data-fignum="4" prefix="" alt="Others include &quot;We have incrementally improved the estimate of this coefficient,&quot; &quot;Maybe all these categories are wrong,&quot; and &quot;We found a way to make student volunteers worse at tasks.&quot;">
+<div id="fig-xkcd-sci-papers" class="quarto-float quarto-figure quarto-figure-center" prefix="" alt="Others include &quot;We have incrementally improved the estimate of this coefficient,&quot; &quot;Maybe all these categories are wrong,&quot; and &quot;We found a way to make student volunteers worse at tasks.&quot;" data-fignum="4">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-xkcd-sci-papers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="FigureTitle" data-custom-style="FigureTitle">
@@ -360,7 +464,7 @@ window.Quarto = {
 <p>Back to xkcd. Here’s a good one about types of eclipses:</p>
 <div class="cell FigureWithNote" data-apa-note="From xkcd (#1880) by Randall Monroe" data-custom-style="FigureWithNote">
 <div class="cell-output-display">
-<div id="fig-xkcd-eclipses" class="quarto-float quarto-figure quarto-figure-center" data-fignum="5" prefix="" data-fig-pos="H">
+<div id="fig-xkcd-eclipses" class="quarto-float quarto-figure quarto-figure-center" prefix="" data-fignum="5" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-xkcd-eclipses-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="FigureTitle" data-custom-style="FigureTitle">
@@ -413,13 +517,13 @@ window.Quarto = {
 <p>A critical component of using our D2MR workflow for reproducible research is the ability to seamlessly integrate references to objects and object elements into the narrative text of your publication. When you run a model or summary and then identify coefficients, summary stats, or other important values in the output, you <em>could</em> type out those values as literal, static text. This is not only time-consuming, it problematically opens the door for significant human error each time the values must be manually updated.</p>
 <p>Inline R code is an alternative that allows you to replace this static text with dynamic code. Rather than changing the <span class="math inline">\beta</span>, <span class="math inline">p</span>-value, mean, etc. every time any tiny thing in your data or code processes change, the values are calculated during the knitting process. You add the code once, then (ideally) never need to modify it so long as the structure of your data and modeling stays the same.</p>
 <p>Fundamentally, think about inline R code as a teeny-tiny code chunk that takes the “1-chunk-1-thing” rule to the extreme, so much so that the output of the whole thing is the same kind of thing you’d just type into a Word document otherwise. Everything within the code will run exactly like it’s run in the console, meaning you can always quickly check how it will render when knit by just copying and pasting that code into your console in RStudio.</p>
-<p>The general format for inline R is a backtick<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, then a space, then as much code as you like (remember, literally what you’d see if you copied and pasted it into the console), then a closing backtick:</p>
+<p>The general format for inline R is a backtick<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, then a space, then as much code as you like (remember, literally what you’d see if you copied and pasted it into the console), then a closing backtick:</p>
 <p><code>`r yourCodeHere()`</code></p>
 <section id="referencing-values-from-lists-and-tibbles" class="level4">
 <h4 data-anchor-id="referencing-values-from-lists-and-tibbles">Referencing values from lists and tibbles.</h4>
 <p>In the following chunk, I create a vector, a list, and a tibble. These are basic R objects you’ll need to extract references from often.</p>
-<p>To reference a value from a vector, list, or tibble, you need to know the index of the value you want to reference. In R, indexing starts at 1<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, so the first element of a vector, list, or tibble is at index 1. You can reference the value at a specific index by using the object name followed by square brackets containing the index. For example, to reference the second element of a vector <code>ex_vector</code>, you would write <code>ex_vector[2]</code>: 30.</p>
-<p>If you’ve got a list that is really a <code>list</code> and not a <code>vector</code> that you’re casually calling a “list,” it’s a little weirder. <code>list</code> objects look like a series of values, but they are actually a series of other lists. If you referenced the second element of a <code>list</code> object <code>ex_list</code> with <code>ex_list[2]</code>, you would get a list that contains the second element: 30.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> To get the actual value, you need to reference the index of the value within the list. For example, to reference the second element of a <code>list</code> object <code>ex_list</code>, you would write <code>ex_list[[2]]</code>: 30.</p>
+<p>To reference a value from a vector, list, or tibble, you need to know the index of the value you want to reference. In R, indexing starts at 1<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, so the first element of a vector, list, or tibble is at index 1. You can reference the value at a specific index by using the object name followed by square brackets containing the index. For example, to reference the second element of a vector <code>ex_vector</code>, you would write <code>ex_vector[2]</code>: 30.</p>
+<p>If you’ve got a list that is really a list and not a vector that you’re casually calling a “list,” it’s a little weirder. List objects look like a series of values, but they are actually a series of other lists. If you referenced the second element of a list object <code>ex_list</code> with <code>ex_list[2]</code>, you would get a list that contains the second element: 30.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> To get the actual value, you need to reference the index of the value within the list. For example, to reference the second element of a list object <code>ex_list</code>, you would write <code>ex_list[[2]]</code>: 30.</p>
 <p>You can reference values from a tibble in the same way you would reference values from a vector, but you have to index both the row and column. For example, to reference the value in the second row and third column of a tibble <code>ex_tibble</code>, you would write <code>ex_tibble[2, 3]</code>: 75.</p>
 <p>You can also use brackets to index by names. In a tibble, that usually means column/variable names, but you could use row names if your df has them. For example, to reference the value in the second row and the column named “mass” in a tibble <code>ex_tibble</code>, you would write <code>ex_tibble[2, "mass"]</code> to get the same as the above <code>ex_tibble[2,3]</code>: 75.</p>
 <p>In your code, you’ll often need to reference whole columns or rows, which you can do by omitting a value on either side of the comma. So to get the second row of <code>ex_tibble</code>, you would write <code>ex_tibble[2, ]</code>: C-3PO, 167, 75, c(“A New Hope”, “The Empire Strikes Back”, “Return of the Jedi”, “The Phantom Menace”, “Attack of the Clones”, “Revenge of the Sith”).</p>
@@ -427,21 +531,179 @@ window.Quarto = {
 <p>To get the column named “mass” from <code>ex_tibble</code>, you would write <code>ex_tibble[, "mass"]</code>. If you don’t include the comma, it will assume you want the variable. So <code>ex_tibble["mass"]</code> will return the column named “mass”. More commonly, if you want to call a column or row, you can use the <code>$</code> operator. For example, to reference the column named “mass” from <code>ex_tibble</code>, you would write <code>ex_tibble$mass</code>. <!-- notice that all these are just backticks to display verbatim code, not inline r code --></p>
 <p>You <em>cannot</em> call a tibble <em>column</em> in markdown and render it as text. (What would that even look like?)</p>
 </section>
-<section id="issues" class="level4">
-<h4 data-anchor-id="issues">Issues.</h4>
+</section>
+<section id="tips-and-tricks" class="level3">
+<h3 data-anchor-id="tips-and-tricks">Tips and Tricks</h3>
+<p>The <strong><code>apa_p()</code> function</strong> from the <code>papaja</code> package can be used to format p-values in APA style. It handles rounding, and prevents the p-value from being displayed as <code>0.000</code> when it is very small.</p>
+<p>Use the <strong><code>broom</code> package</strong> to extract values from model objects. The <code>tidy()</code> function extracts coefficients and other values from a model object, and the <code>glance()</code> function extracts model-level statistics.</p>
+<p><strong>Store common text</strong> as objects in your R script. This can be useful for text that is repeated throughout the document, especially if it’s text that you may want to change later. For example, in the Language Development Project (a dataset I frequently work with) there are two cohorts of children. The first is a group of children who are “typically developing,” and the second is a group of children with perinatal brain lesions. The latter group is referred to by a handful of different names depending on the context of the publication, e.g., “atypically developing”, “perinatal brain lesion”, “brain lesion”, “brain injury”, etc. I can store the variable <code>group2 &lt;- "perinatal brain lesion"</code> and use it throughout the document. If I need to change the name of the group, I only need to reassign <code>group2 &lt;- "brain injury"</code> in one place.</p>
+<p><strong>Write your own functions</strong> for commonly reported results. For example, you can write a function that takes a model object as an argument and returns a string with the results of the model. This can be useful for reporting results in APA style.</p>
+<p>As an example, start by building a simple linear regression model with the <code>mtcars</code> dataset. Does vehicle weight predict fuel efficiency?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple linear regression model</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can use the <code>tidy()</code> function and the <code>apa_p()</code> function to extract and format the coefficients and p-values from the model object and print into a string.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># report_regression takes a lm model object as an argument</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and returns a string of format:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># "$F$(df, df.residual) = F-value, $p$ = p-value, $R^2$ = r-squared"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>report_regression <span class="ot">&lt;-</span> <span class="cf">function</span>(model) {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract coefficients and p-values</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  m_glance <span class="ot">&lt;-</span> <span class="fu">glance</span>(model)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Format the p-value</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  p_value <span class="ot">&lt;-</span> <span class="fu">apa_p</span>(m_glance<span class="sc">$</span>p.value, <span class="at">add_equals =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a string with the results</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  report <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"$F$("</span>, </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                   m_glance<span class="sc">$</span>df, </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                   <span class="st">", "</span>, m_glance<span class="sc">$</span>df.residual, </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                   <span class="st">") = "</span>, <span class="fu">round</span>(m_glance<span class="sc">$</span>statistic, <span class="dv">2</span>), </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                   <span class="st">", $p$ = "</span>, p_value, <span class="st">", $R^2$ = "</span>, <span class="fu">round</span>(m_glance<span class="sc">$</span>r.squared,<span class="dv">2</span>))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(report)    </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># report_beta takes a lm model object and a variable name (string) as arguments</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># and returns a string of format:</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># "beta = beta-value, se = se-value, p = p-value"</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>report_beta <span class="ot">&lt;-</span> <span class="cf">function</span>(model, var) {</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract coefficients and p-values</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  var_tidy <span class="ot">&lt;-</span> <span class="fu">tidy</span>(model) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(term <span class="sc">==</span> var)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Format the p-value</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  p_value <span class="ot">&lt;-</span> <span class="fu">apa_p</span>(var_tidy<span class="sc">$</span>p.value, <span class="at">add_equals =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a string with the results</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  report <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"$</span><span class="sc">\\</span><span class="st">beta$ = "</span>, <span class="fu">round</span>(var_tidy<span class="sc">$</span>estimate, <span class="dv">2</span>),</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>                   <span class="st">", $se$ = "</span>, <span class="fu">round</span>(var_tidy<span class="sc">$</span>std.error, <span class="dv">2</span>),</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>                   <span class="st">", $p$ = "</span>, p_value</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(report)    </span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Reporting the results of the regression model created in the previous chunk <em>with static text</em> would look like:</p>
+<p>A simple linear regression was conducted to predict fuel efficiency from vehicle weight. The model significantly predicted miles per gallon, <em>F</em>(1, 30) = 91.38, <em>p</em> &lt; .001, R² = .75. Vehicle weight was a significant predictor (<em>β</em> = -5.34, <em>p</em> &lt; .001), indicating that for each additional thousand pounds of weight, fuel efficiency decreased by 5.34 miles per gallon.</p>
+<p>Reporting the results of the regression model created in the previous chunk <em>with inline R code</em> would look like:</p>
+<p>A simple linear regression was conducted to predict fuel efficiency from vehicle weight. The model significantly predicted miles per gallon, <span class="math inline">F</span>(1, 30) = 91.38, <span class="math inline">p</span> = &lt; .001, <span class="math inline">R^2</span> = 0.75. Vehicle weight was a significant predictor (<span class="math inline">\beta</span> = -5.34, <span class="math inline">se</span> = 0.56, <span class="math inline">p</span> = &lt; .001), indicating that for each additional thousand pounds of weight, fuel efficiency decreased by 5.34 miles per gallon.</p>
+</section>
+<section id="common-issues" class="level3">
+<h3 data-anchor-id="common-issues">Common Issues</h3>
+<p>Are you getting errors referring to packages, installation, CRAN, or other library-related things? First check that all necessary packages are installed on your system. Then check that nothing in your document <em>or sourced files</em> includes code that would prompt R to install or update a package that is already loaded. It’s good practice to load all necessary packages at the beginning of your document. If your code requires uncommon or non-CRAN packages that a user is likely to need to install before running, include a comment noting that at the beginning of your document. Optionally (and required in D2MR), include a <strong>commented out</strong> line of code that will install the package if it is not already installed <em>if the user chooses to uncomment the line.</em></p>
 <p>Something knitting in a way you didn’t expect? Check that the class of your output is what you think it should be. In particular, if you want something to appear as regular-old in-line text, it needs to be a <em>value</em> data type, like numeric, character, or logical. The <code>cor()</code> function, for example, results in a simple numeric value, while the <code>cor.test()</code> function results in an “htest” object. That object contains numeric values you can extract and reference, but if you try to reference it directly it won’t knit.</p>
-</section>
+<p>Are inline references to tables, figures, sections, or citations rendering as “??” and/or the literal reference in bold (e.g., “Figure <strong>??</strong>” or <strong>smith2017??</strong>)? Check that the key you’re using is identical to the chunk label or bibtex citation key. Did you use the <code>fig-</code> or <code>tab-</code> prefix for both the chunk label and the reference? Did you use the <code>@</code> symbol before the citation key? Did a Zotero update the citation key format in your .bib file?</p>
+<p>Tables or figures being weird or not displaying at all? Tables are the worst, and there’s a lot of things that can go wrong with them. Figures aren’t as bad, but still prone to many of the same problems. The first things to check are:</p>
+<ol type="1">
+<li>Did you use the <code>tbl-</code> / <code>fig-</code> prefix in the chunk label?</li>
+<li>Did you include the <code>tbl-cap</code> / <code>fig-cap</code> option in the chunk?</li>
+<li>Is your chunk actually returning a table/figure at all, or is it assigning the table/figure to an object that you didn’t actual call in the chunk?</li>
+<li>Is the chunk returning HTML, LaTeX, or text in any other format or markup language? Add <code>results = "asis"</code> to the chunk header to ensure that the output is rendered “as-is,” i.e., actually processing the markup rather than displaying the literal output. (Personally I find this very counterintuitive. Wouldn’t it make more sense if “asis” meant “don’t process the markup”? Is what it is.)</li>
+</ol>
+<p>If you’re still having trouble, try running the chunk in a separate R script to see if it’s a problem with the chunk or with the document. If it runs fine in the script, try running the script in the document to see if it’s a problem with the chunk options or the document structure.</p>
+
 </section>
 </section>
 </section>
 
 
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-R-papaja" class="csl-entry" role="listitem">
+Aust, F., &amp; Barth, M. (2024). <em><span class="nocase">papaja</span>: <span>Prepare</span> reproducible <span>APA</span> journal articles with <span>R Markdown</span></em>. <a href="https://doi.org/10.32614/CRAN.package.papaja">https://doi.org/10.32614/CRAN.package.papaja</a>
+</div>
+<div id="ref-R-tinylabels" class="csl-entry" role="listitem">
+Barth, M. (2023). <em><span class="nocase">tinylabels</span>: Lightweight variable labels</em>. <a href="https://cran.r-project.org/package=tinylabels">https://cran.r-project.org/package=tinylabels</a>
+</div>
+<div id="ref-bavelasetal_1992_interactive" class="csl-entry" role="listitem">
+Bavelas, J. B., Chovil, N., Lawrie, D. A., &amp; Wade, A. (1992). Interactive gestures. <em>Discourse Processes</em>, <em>15</em>(4), 469–489. <a href="https://doi.org/10.1080/01638539209544823">https://doi.org/10.1080/01638539209544823</a>
+</div>
+<div id="ref-R-shiny" class="csl-entry" role="listitem">
+Chang, W., Cheng, J., Allaire, J., Sievert, C., Schloerke, B., Xie, Y., Allen, J., McPherson, J., Dipert, A., &amp; Borges, B. (2024). <em>Shiny: Web application framework for r</em>. <a href="https://CRAN.R-project.org/package=shiny">https://CRAN.R-project.org/package=shiny</a>
+</div>
+<div id="ref-dowling_2022_obviously" class="csl-entry" role="listitem">
+Dowling, N. (2022). <em>Obviously <span>I Don</span>’t <span>Know</span> but <span>Whatever</span>: <span>Emblematic</span> and <span>Pragmatic Uses</span> of <span>Shrug Gestures</span> in <span>Early Childhood</span> and <span>Adolescence</span></em> [PhD thesis, The University of Chicago]. <a href="https://doi.org/10.6082/uchicago.4897">https://doi.org/10.6082/uchicago.4897</a>
+</div>
+<div id="ref-dowling_2025_data" class="csl-entry" role="listitem">
+Dowling, N. (2025). <em>From <span>Data</span> to <span>Manuscript</span> in <span>R</span> – <span>D2MR</span></em> [Course Website]. <a href="https://nrdowling.com/d2mr/">https://nrdowling.com/d2mr/</a>
+</div>
+<div id="ref-R-flextable" class="csl-entry" role="listitem">
+Gohel, D., &amp; Skintzos, P. (2024). <em>Flextable: Functions for tabular reporting</em>. <a href="https://CRAN.R-project.org/package=flextable">https://CRAN.R-project.org/package=flextable</a>
+</div>
+<div id="ref-R-lubridate" class="csl-entry" role="listitem">
+Grolemund, G., &amp; Wickham, H. (2011). Dates and times made easy with <span class="nocase">lubridate</span>. <em>Journal of Statistical Software</em>, <em>40</em>(3), 1–25. <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a>
+</div>
+<div id="ref-heritage_2012_epistemics" class="csl-entry" role="listitem">
+Heritage, J. (2012a). Epistemics in <span>Action</span>: <span>Action Formation</span> and <span>Territories</span> of <span>Knowledge</span>. <em>Research on Language &amp; Social Interaction</em>, <em>45</em>(1), 1–29. <a href="https://doi.org/10.1080/08351813.2012.646684">https://doi.org/10.1080/08351813.2012.646684</a>
+</div>
+<div id="ref-heritage_2012_epistemic" class="csl-entry" role="listitem">
+Heritage, J. (2012b). The <span>Epistemic Engine</span>: <span>Sequence Organization</span> and <span>Territories</span> of <span>Knowledge</span>. <em>Research on Language &amp; Social Interaction</em>, <em>45</em>(1), 30–52. <a href="https://doi.org/10.1080/08351813.2012.646685">https://doi.org/10.1080/08351813.2012.646685</a>
+</div>
+<div id="ref-R-tibble" class="csl-entry" role="listitem">
+Müller, K., &amp; Wickham, H. (2023). <em>Tibble: Simple data frames</em>. <a href="https://CRAN.R-project.org/package=tibble">https://CRAN.R-project.org/package=tibble</a>
+</div>
+<div id="ref-R-base" class="csl-entry" role="listitem">
+R Core Team. (2024). <em>R: A language and environment for statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
+</div>
+<div id="ref-R-broom" class="csl-entry" role="listitem">
+Robinson, D., Hayes, A., &amp; Couch, S. (2024). <em>Broom: Convert statistical objects into tidy tibbles</em>. <a href="https://CRAN.R-project.org/package=broom">https://CRAN.R-project.org/package=broom</a>
+</div>
+<div id="ref-schneider_2025_apaquarto" class="csl-entry" role="listitem">
+Schneider, W. J. (2025). <em>Apaquarto</em>. <a href="https://github.com/wjschne/apaquarto">https://github.com/wjschne/apaquarto</a>
+</div>
+<div id="ref-R-ggplot2" class="csl-entry" role="listitem">
+Wickham, H. (2016b). <em>ggplot2: Elegant graphics for data analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>
+</div>
+<div id="ref-wickham_2016_ggplot2" class="csl-entry" role="listitem">
+Wickham, H. (2016a). <em>Ggplot2: <span>Elegant Graphics</span> for <span>Data Analysis</span></em> (2nd ed. 2016 edition). Springer.
+</div>
+<div id="ref-R-conflicted" class="csl-entry" role="listitem">
+Wickham, H. (2023a). <em>Conflicted: An alternative conflict resolution strategy</em>. <a href="https://CRAN.R-project.org/package=conflicted">https://CRAN.R-project.org/package=conflicted</a>
+</div>
+<div id="ref-R-forcats" class="csl-entry" role="listitem">
+Wickham, H. (2023b). <em>Forcats: Tools for working with categorical variables (factors)</em>. <a href="https://CRAN.R-project.org/package=forcats">https://CRAN.R-project.org/package=forcats</a>
+</div>
+<div id="ref-R-stringr" class="csl-entry" role="listitem">
+Wickham, H. (2023c). <em>Stringr: Simple, consistent wrappers for common string operations</em>. <a href="https://CRAN.R-project.org/package=stringr">https://CRAN.R-project.org/package=stringr</a>
+</div>
+<div id="ref-R-tidyverse" class="csl-entry" role="listitem">
+Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D., François, R., Grolemund, G., Hayes, A., Henry, L., Hester, J., Kuhn, M., Pedersen, T. L., Miller, E., Bache, S. M., Müller, K., Ooms, J., Robinson, D., Seidel, D. P., Spinu, V., … Yutani, H. (2019). Welcome to the <span class="nocase">tidyverse</span>. <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>
+</div>
+<div id="ref-wickhametal_2023_data" class="csl-entry" role="listitem">
+Wickham, H., Cetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for <span>Data Science</span>: <span>Import</span>, <span>Tidy</span>, <span>Transform</span>, <span>Visualize</span>, and <span>Model Data</span></em> (2nd edition). O’Reilly Media.
+</div>
+<div id="ref-R-dplyr" class="csl-entry" role="listitem">
+Wickham, H., François, R., Henry, L., Müller, K., &amp; Vaughan, D. (2023). <em>Dplyr: A grammar of data manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>
+</div>
+<div id="ref-R-purrr" class="csl-entry" role="listitem">
+Wickham, H., &amp; Henry, L. (2025). <em>Purrr: Functional programming tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>
+</div>
+<div id="ref-R-readr" class="csl-entry" role="listitem">
+Wickham, H., Hester, J., &amp; Bryan, J. (2024). <em>Readr: Read rectangular text data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>
+</div>
+<div id="ref-R-tidyr" class="csl-entry" role="listitem">
+Wickham, H., Vaughan, D., &amp; Girlich, M. (2024). <em>Tidyr: Tidy messy data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>
+</div>
+<div id="ref-R-knitr" class="csl-entry" role="listitem">
+Xie, Y. (2015). <em>Dynamic documents with <span>R</span> and knitr</em> (2nd ed.). Chapman; Hall/CRC. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>
+</div>
+<div id="ref-xie_2018_bookdown" class="csl-entry" role="listitem">
+Xie, Y. (2018). <em>Bookdown: <span>Authoring Books</span> and <span>Technical Documents</span> with <span>R Markdown</span></em>. <a href="https://bookdown.org/yihui/bookdown/">https://bookdown.org/yihui/bookdown/</a>
+</div>
+<div id="ref-R-ftExtra" class="csl-entry" role="listitem">
+Yasumoto, A. (2024). <em>ftExtra: Extensions for ’flextable’</em>. <a href="https://CRAN.R-project.org/package=ftExtra">https://CRAN.R-project.org/package=ftExtra</a>
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>If you want to make something appear as “verbatim” text that looks like code the way it shows up in this notebook, surround it in backticks without the “r” in front: <code>`verbatim text`</code>. If you want to include backticks within the literal code, smash your head against your desk until you give up.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>This is probably the biggest reason I will never be a python person. I’m team counting-starts-at-1 all the way. It’s the <em>1st</em> thing! There’s a 1 right in the name!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Quarto is actually smart enough to know you’re trying to reference the value and not the list, so if you use this in your markdown it will knit to the value. But if you’re actually using it for any kind of programming (not just printing directly), you’ll need to use the correct data type.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Sure this isn’t relevant to anything else, but it’s a great excuse to demo <code>citr</code> and talk about gesture at the same time!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>If you want to make something appear as “verbatim” text that looks like code the way it shows up in this notebook, surround it in backticks without the “r” in front: <code>`verbatim text`</code>. If you want to include backticks within the literal code, smash your head against your desk until you give up.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This is probably the biggest reason I will never be a python person. I’m team counting-starts-at-1 all the way. It’s the <em>1st</em> thing! There’s a 1 right in the name!<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Quarto is actually smart enough to know you’re trying to reference the value and not the list, so if you use this in your markdown it will knit to the value. But if you’re actually using it for any kind of programming (not just printing directly), you’ll need to use the correct data type.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->

@@ -43,7 +43,7 @@ floatsintext: true
 # Numbered lines (.pdf and .docx only)
 numbered-lines: false
 # File with references
-bibliography: bibliography.bib
+bibliography: [r-references.bib, bibliography.bib]
 # Suppress title page
 suppress-title-page: false
 # Link citations to references
@@ -85,13 +85,13 @@ format:
     fig-width: 2
     fig-height: 2
     out-width: 40%
-    
 ---
 
 ```{r}
 #| label: setup
 #| include: false
 
+# Load necessary packages
 library(conflicted)
 library(tidyverse)
 library(papaja)
@@ -103,22 +103,105 @@ conflicts_prefer(dplyr::filter, .quiet = TRUE)
 conflicts_prefer(flextable::separate_header, .quiet = TRUE)
 conflicts_prefer(flextable::theme_apa, .quiet = TRUE)
 
+# Set seed
+set.seed(1234)
+
+# Generate r-references.bib file (see explanation in the Methods section)
+papaja::r_refs(file = "r-references.bib")
+
+
+
 ```
 
+## Introduction
 
-This document is a template demonstrating the apaquarto format. It includes examples of how to create figures and tables, as well as how to reference them in the text. The document is written in Quarto, a system for creating documents with R Markdown. The apaquarto extension provides a template for creating APA7-formatted manuscripts.
+This document is a template demonstrating the apaquarto format, to be used in the course From Data to Manuscript in R [@dowling_2025_data]. It includes examples of how to create figures and tables, as well as how to reference them in the text. The document is written in Quarto, a system for creating documents with R Markdown. The apaquarto extension provides a template for creating APA7-formatted manuscripts.
 
 When rendered into html, pdf, or Word, this example produces an APA styled manuscript. Although the contents of the manuscript are not what you would expect in a psychology journal article, the formatting should demonstrate both the capabilities of the apaquarto extension and the basic template an actual manuscript would follow.
 
-You can learn more about APA style in the [APA Style Manual](https://apastyle.apa.org/). Details about creating documents using the apaquarto extension in the [documentation](https://wjschne.github.io/apaquarto/writing.html#headings-in-apa-style).
+You can learn more about APA style in the [APA Style Manual](https://apastyle.apa.org/). Details about creating documents using @schneider_2025_apaquarto in the [documentation](https://wjschne.github.io/apaquarto/).
 
 The example demonstrates the mechanics of markdown manuscripts using Quarto and the apaquarto extension, specifically. While many of the topics covered are the same in other markdown systems, like the older R Markdown or the `papaja` package, the specific syntax and options may differ.
 
-## Literature Review
+Your introduction should be a clear and concise explanation of the research question, the background of the problem, and the purpose of the study. 
+It should include both a [Literature Review](#sec-lit-review) and [Present Study](#sec-present-study) section. 
 
-<!-- This section will feature use of BibTeX citations. -->
+### Literature Review {#sec-lit-review}
+
+The literature review includes citations to relevant research and other sources. 
+Citing sources requires formatting according to some standardized style, like APA or Chicago Manual of Style.
+In this document, build with apaquarto, you should not be surprised to learn that we use APA style.
+
+Information about your references are stored in a consolidated .bib file, typically located in the same directory as your manuscript and conventionally named `bibliography.bib`. The bib file contains all the information needed to cite a source, including the author, title, publication date, and other relevant information. 
+The information for any single source is attached to a unique key, which you can then use to cite the source in your text.
+You can reference a source from your bibliography the same way you'd reference a figure, table, or document section: with the `@` symbol followed by the key. 
+
+For example, many of the readings for this class come from Hadley Wickham's book *R for Data Science*. To cite this book, you would use `@wickhametal_2023_data` (the key assigned to it in the bibliography file). This will render as (Wickham, 2023) in the text and as a full citation in the references section at the end of the document.
+
+There are a few different formats you'll need to know for citing sources in your text. Most commonly, you'll want to cite the author(s) and the year of publication within a parenthetical citations (e.g., "Wickham, 2023"). Also common is the author name(s) in the text and then only the year in parentheses (e.g., "Wickham (2023)"). 
+
+There's simple syntax to do each of these with bibtex keys, but you can do more complex things, too. You can (among other things) cite multiple sources at once and have them automatically be alphabetized and formatted, specify chapters and page number, and add in-parenthetical information like "see also" or "for more information." Let's see some in action:
+
+@dowling_2025_data claims that Quarto is awesome. In fact, in Dowling's UChicago course on the topic [-@dowling_2025_data], she never seems to stop saying that RMarkdown is awesome. She *really* likes RMarkdown [@dowling_2025_data]. Of course, it is well established that RMarkdown and Quarto are, indeed, awesome [@xie_2018_bookdown; @dowling_2025_data; @schneider_2025_apaquarto]. Nearly everyone agrees on this very obvious point [e.g., @xie_2018_bookdown; @dowling_2025_data]. 
+
+You can include notes, like the "e.g.," in the examples above, by simply adding it at the beginning of the list of keys. The added text will get "attached to" the first citation, so it's important that you put it before whichever citation will actually show up first. 
+
+For the most part, BibTeX will also handle alphabetical ordering of multiple citations within the same parenthetical citation [@wickhametal_2023_data; @dowling_2025_data]. That means that in the example in the previous paragraph, the text is attached to the "Xie" citation and so will render between "Dowling" and "Xie" once they are ordered.
+
+Oddly, if you put the extra text after the semicolon, it seems to just stop trying to order the citations and will render them in the order you put them in the text. 
+
+If you use citr to add references, it will do the sorting before it adds the keys to your document, so you don't have to worry about any of that
+
+In BibTeX, same-year, same-author publications are automatically disambiguated [@heritage_2012_epistemic; @heritage_2012_epistemics]. 
+
+You can also include page numbers or chapters in your citations. For example, you can cite a specific chapter in a book like this: [@wickham_2016_ggplot2, ch. 1]. This will render as (Wickham, 2016, ch. 1) in the text and as a full citation in the references section at the end of the document. We learned all about ggplot [see @wickham_2016_ggplot2, ch. 1]. The best introduction to ggplot is with @wickham_2016_ggplot2 [, ch. 1].
+
+You know what else is awesome besides RMarkdown? Interactive gestures, which allow interlocutors to expediently facilitate conversation nonverbally [@bavelasetal_1992_interactive; @dowling_2022_obviously].[^1]
+
+[^1]: Sure this isn't relevant to anything else, but it's a great excuse to demo `citr` and talk about gesture at the same time!
+
+Brackets and hyphens allow you to specify which part of the citation to include in parentheses (or at all). 
+Briefly, brackets say the whole thing (whatever that may be) should be in parentheses and hyphens say the author name should be excluded.
+
+- Brackets: `[@dowling_2025_data]` [@dowling_2025_data]
+- No brackets: `@dowling_2025_data` @dowling_2025_data
+- Brackets and hyphen: `[-@dowling_2025_data]` [-@dowling_2025_data]
+
+<!-- THIS BIT ABOUT REFERENCING SUBSECTIONS AND NOCITE NEEDS TO BE UPDATED FOR APAQUARTO -->
+
+<!-- We summarize our findings in subsection \@ref(disc) and note that subsection \@ref(refs)[^2] is unrelated to this report. Several texts used in the preparation of this manuscript but not directly cited are included in the references section because they are placed within the `nocite` section near the end of the RMarkdown document. -->
+
+<!-- [^2]: These two numbered references for the Discussion and References sections are generated dynamically by including a section label `{#whatever}` in the markdown header for the section. -->
+
+### Present Study {#sec-present-study}
+
+The present "study" is a demonstration of the capabilities of the apaquarto extension for Quarto. It's not a study, but whatever. This is the present study section.
 
 ## Methods
+
+In this section, we will go over how to create, render, and reference tables in apaquarto documents. 
+
+At some point in your methods section, you'll want to say that you used R, and you may want to call out specific packages used for statistical analyses or plotting. You can do that automatically with the `papaja::r_refs()` and `papaja::cite_r()` functions. 
+
+This process has three steps:
+
+1.  Modify the YAML bibliography option to be a bracketed list of both the .bib file you're using for your regular references and a separate .bib file for your R references. For example, `bibliography: [bibliography.bib, r-references.bib]`.
+2.  In a setup chunk at the beginning of your document, call `papaja::r_refs()` to generate the references for the packages you used in the specified .bib file. Run this *after* you load the packages you want to cite. Useful arguments:
+    1.  (Required) `file`: The name of the file you specified in the YAML bibliography option. The function will create the file if it doesn't exist and overwrite it if it does.
+    2.  (Optional) `append = TRUE`: Set to `FALSE` to overwrite the file rather than add on missing references to the end. Useful if you are trying out different packages and know you won't end up using them all.
+    3.  (Optional) `tweak = TRUE`: This function is a wrapper for `create_bib()`, and `tweak = TRUE` fixes some known issues with `create_bib()`. If it's not working as expected, you can try setting `tweak = FALSE` and see if that helps.
+3.  In the text, call `papaja::cite_r()` to insert the references where you want them. Useful arguments (all are optional):
+    1.  (Treat this like it's required) `file = NULL`: To use this like we want, set this to name of the file you specified in the YAML bibliography option. This is the same file you used in `r_refs()`. If you don't specify it, the default is `NULL`, which will cite `R` itself but no packages.
+    2.  `footnote = FALSE`: By default, prints where you put it. If you set this to `TRUE`, it will print the references as a footnote. This is useful if you have a lot of packages and don't want to clutter up your text.
+    3.  `pkgs = NULL`: If you only want to cite specific packages, you can list them here. This is useful if you have a lot of packages and only want to cite a few.
+    4.  `omit = FALSE`: Use together with `pkgs`. Set this to `TRUE` to *omit* the packages listed in `pkgs` from the citation.
+
+The `r_refs()` function will generate the references for the packages you used in the specified .bib file. The `cite_r()` function will insert the references where you put it in the text. The YAML option will tell Quarto to combine the references from this file with the references from your regular bibliography file.
+
+We used `r papaja::cite_r("r-references.bib")` to prepare this document.
+
+There are other ways to do this, and considering papaja doesn't get regular updates it may be best to find a more reliable alternative. You can read about one other way to do so [here](https://bookdown.org/yihui/rmarkdown-cookbook/write-bib.html) and do some googling for other options. At least for now the papaja functions are working and (IMO) easier to use.
+
 
 ### Tables
 
@@ -128,28 +211,30 @@ For tables produced by executable code cells, include a label with a `tbl-` pref
 
 ```{r}
 #| label: tbl-iris
-#| tbl-cap: "Iris Data"
+#| tbl-cap: "Iris Data (First 6 Rows)"
+#| apa-note: The iris dataset is a classic dataset in R.
 
-kable(head(iris))
+head(iris) %>% 
+    flextable() %>% 
+    flextable::theme_apa()
 ```
 
-In the chunk above, I produce @tbl-iris a table of the first five rows of the `iris` dataset. It renders from the chunk (it is not saved to an object) at the location of the chunk in the manuscript. I can reference this table in the text as `@tbl-iris`, which will render as "Table 1" in the rendered document.
+In the chunk above, I produce @tbl-iris, which is a table of the first six rows of the `iris` dataset. It renders from the chunk (it is not saved to an object) at the location of the chunk in the manuscript. I can reference this table in the text as `@tbl-iris`, which will render as "Table 1" in the rendered document.
 
 @tbl-iris, when rendered, has three components:
 
-1. The table itself
-2. The table *label*, which is the word "Table" and the generated number in the order it was rendered
-3. The table caption, which is the title of the table
+1.  The table itself
+2.  The table *label*, which is the word "Table" and the generated number in the order it was rendered
+3.  The table caption, which is the title of the table
 
 Take note that the `tbl-cap` option that assigned the "caption" is actually assigning with APA7 would refer to as the "title" of the table.
 
 There are several important things to note about the simple figure chunk above:
 
-1. The chunk options are in the "comment style" format. They are preceded by `#|` and are within the chunk, not the chunk header (the ````{r}` part).
-2. The first chunk option, label, is in the line *immediately following the chunk header*. This is important for the table to be recognized as a table. If there is anything above the label, including comments and whitespace, the table will not render as a table and the document may not render at all without error
-3. The label begins with "tbl-", which tells apaquarto that this is a table. If the chunk has any other name, it will still render images in the chunk (including generated plots), but they will not be recognized as tables.
-4. The caption in the `tbl-cap` option. As discussed above, this "caption" is the title of the table and should be in title case, with no period.
-
+1.  The chunk options are in the "comment style" format. They are preceded by `#|` and are within the chunk, not the chunk header (the \`\`\``{r}` part).
+2.  The first chunk option, label, is in the line *immediately following the chunk header*. This is important for the table to be recognized as a table. If there is anything above the label, including comments and whitespace, the table will not render as a table and the document may not render at all without error
+3.  The label begins with "tbl-", which tells apaquarto that this is a table. If the chunk has any other name, it will still render images in the chunk (including generated plots), but they will not be recognized as tables.
+4.  The caption in the `tbl-cap` option. As discussed above, this "caption" is the title of the table and should be in title case, with no period.
 
 ## Results
 
@@ -157,7 +242,7 @@ There are several important things to note about the simple figure chunk above:
 
 Figures can be created in R chunks and rendered as figures in the text. They can be referenced in the text and will be numbered in the order they are rendered.
 
-### Figure chunk options
+### Figure Chunk Options
 
 Figure chunks should use the quarto-preferred "comment style" chunk option settings. Minimally, they should include a label and a caption. The label should begin with "fig-" to be recognized as a figure. The caption should be a string in title case. The image (file or object) should be rendered in the chunk.
 
@@ -173,18 +258,18 @@ In the chunk above, I produce @fig-iris-rendered-plot a scatterplot of the `iris
 
 @fig-iris-rendered-plot, when rendered, has three components:
 
-1. The plot itself
-2. The figure *label*, which is the word "Figure" and the generated number in the order it was rendered
-3. The figure caption, which is the title of the plot
+1.  The plot itself
+2.  The figure *label*, which is the word "Figure" and the generated number in the order it was rendered
+3.  The figure caption, which is the title of the plot
 
 Take note that the `fig-cap` option that assigned the "caption" is actually assigning with APA7 would refer to as the "title" of the figure. The thing you probably think of when you hear caption -- the explanatory text below the figure -- is called a "note." There is an option to include a note, but it is not required or included in this minimal example.
 
 There are several important things to note about the simple figure chunk above:
 
-1. The chunk options are in the "comment style" format. They are preceded by `#|` and are within the chunk, not the chunk header (the ````{r}` part).
-2. The first chunk option, label, is in the line *immediately following the chunk header*. This is important for the figure to be recognized as a figure. If there is anything above the label, including comments and whitespace, the figure will not render as a figure and the document may not render at all without error
-3. The label begins with "fig-", which tells apaquarto that this is a figure. If the chunk has any other name, it will still render images in the chunk (including generated plots), but they will not be recognized as figures.
-4. The caption in the `fig-cap` option. As discussed above, this "caption" is the title of the figure and should be in title case, with no period.
+1.  The chunk options are in the "comment style" format. They are preceded by `#|` and are within the chunk, not the chunk header (the \`\`\``{r}` part).
+2.  The first chunk option, label, is in the line *immediately following the chunk header*. This is important for the figure to be recognized as a figure. If there is anything above the label, including comments and whitespace, the figure will not render as a figure and the document may not render at all without error
+3.  The label begins with "fig-", which tells apaquarto that this is a figure. If the chunk has any other name, it will still render images in the chunk (including generated plots), but they will not be recognized as figures.
+4.  The caption in the `fig-cap` option. As discussed above, this "caption" is the title of the figure and should be in title case, with no period.
 
 @fig-iris-rendered-plot is rendered by actually creating a ggplot in the chunk. However, you can also create a ggplot object elsewhere and render it as a figure. This is useful if you want to use the same plot in multiple places in the document, or if you want to create a very complicated plot in a sourced script.
 
@@ -209,12 +294,11 @@ I can render the plot in a separate chunk by calling the plot object `iris_plot`
 
 Quarto, and the apaquarto extension, can accept many additional chunk options. Like the label and caption options, these are set in the comment style within the chunk. Here are some additional options that can be used in figure chunks:
 
-1. `apa-note`: A note that appears below the figure caption. This is the explanatory text that you might think of as a "caption" in other contexts. Unlike the options that follow, this is a feature of apaquarto specifically, not markdown or Quarto.
-2. `fig-scap`: A short caption that appears in the list of figures. This is useful for long figure captions that are unwieldy in a list of figures.
-3. `fig-alt`: Alt text for accessibility. This will appear if you render as HTML and is useful for screen readers.
-4. `fig-align`: The alignment of the figure. This can be "left", "right", or "center" (the default).
-5. `fig-width` and `fig-height`: The width and height of the figure in inches. This is useful for controlling the size of the figure in the rendered document. The default is 7 inches wide and 5 inches tall.
-
+1.  `apa-note`: A note that appears below the figure caption. This is the explanatory text that you might think of as a "caption" in other contexts. Unlike the options that follow, this is a feature of apaquarto specifically, not markdown or Quarto.
+2.  `fig-scap`: A short caption that appears in the list of figures. This is useful for long figure captions that are unwieldy in a list of figures.
+3.  `fig-alt`: Alt text for accessibility. This will appear if you render as HTML and is useful for screen readers.
+4.  `fig-align`: The alignment of the figure. This can be "left", "right", or "center" (the default).
+5.  `fig-width` and `fig-height`: The width and height of the figure in inches. This is useful for controlling the size of the figure in the rendered document. The default is 7 inches wide and 5 inches tall.
 
 ```{r}
 #| label: fig-plot-more-options
@@ -255,12 +339,12 @@ For images, it's usually better to use `out-width` or `out-height` rather than `
 
 knitr::include_graphics("images/xkcd-scientific-papers.png")
 ```
-Why not take the opportunity to look at a few more xkcd comics? 
+
+Why not take the opportunity to look at a few more xkcd comics?
 
 When you knit this document to a pdf, knitr/Quarto will try to pick the best location to include it. If your image is very large, or if there is very little text between images, the location it chooses may not be precisely where you put the chunk. You can force the image to render exactly where the chunk is with the option `fig-pos: "H"`. Either way--the default or the forced hold--can produce unexpected consequences, so keep an eye out for issues and try out alternatives as needed.
 
 Back to xkcd. Here's a good one about types of eclipses:
-
 
 ```{r}
 #| label: fig-xkcd-eclipses
@@ -287,7 +371,7 @@ I have a point. Notice that the numbers assigned to each figure are based on the
 
 ### Analyses & Inline Code
 
-In this section, we discuss running and referencing statistical analyses. 
+In this section, we discuss running and referencing statistical analyses.
 
 A critical component of using our D2MR workflow for reproducible research is the ability to seamlessly integrate references to objects and object elements into the narrative text of your publication. When you run a model or summary and then identify coefficients, summary stats, or other important values in the output, you *could* type out those values as literal, static text. This is not only time-consuming, it problematically opens the door for significant human error each time the values must be manually updated.
 
@@ -295,11 +379,11 @@ Inline R code is an alternative that allows you to replace this static text with
 
 Fundamentally, think about inline R code as a teeny-tiny code chunk that takes the "1-chunk-1-thing" rule to the extreme, so much so that the output of the whole thing is the same kind of thing you'd just type into a Word document otherwise. Everything within the code will run exactly like it's run in the console, meaning you can always quickly check how it will render when knit by just copying and pasting that code into your console in RStudio.
 
-The general format for inline R is a backtick[^*], then a space, then as much code as you like (remember, literally what you'd see if you copied and pasted it into the console), then a closing backtick:
+The general format for inline R is a backtick[^3], then a space, then as much code as you like (remember, literally what you'd see if you copied and pasted it into the console), then a closing backtick:
+
+[^3]: If you want to make something appear as "verbatim" text that looks like code the way it shows up in this notebook, surround it in backticks without the "r" in front: `` `verbatim text` ``. If you want to include backticks within the literal code, smash your head against your desk until you give up.
 
 `` `r knitr::inline_expr("yourCodeHere()")` ``
-
-[^*]: If you want to make something appear as "verbatim" text that looks like code the way it shows up in this notebook, surround it in backticks without the "r" in front: `` `verbatim text` ``. If you want to include backticks within the literal code, smash your head against your desk until you give up.
 
 #### Referencing values from lists and tibbles
 
@@ -320,20 +404,19 @@ str(ex_tibble)
 
 ```
 
-To reference a value from a vector, list, or tibble, you need to know the index of the value you want to reference. In R, indexing starts at 1[^3], so the first element of a vector, list, or tibble is at index 1. You can reference the value at a specific index by using the object name followed by square brackets containing the index. For example, to reference the second element of a vector `ex_vector`, you would write `ex_vector[2]`: `r ex_vector[2]`. 
+To reference a value from a vector, list, or tibble, you need to know the index of the value you want to reference. In R, indexing starts at 1[^4], so the first element of a vector, list, or tibble is at index 1. You can reference the value at a specific index by using the object name followed by square brackets containing the index. For example, to reference the second element of a vector `ex_vector`, you would write `ex_vector[2]`: `r ex_vector[2]`.
 
+[^4]: This is probably the biggest reason I will never be a python person. I'm team counting-starts-at-1 all the way. It's the *1st* thing! There's a 1 right in the name!
 
-[^3]: This is probably the biggest reason I will never be a python person. I'm team counting-starts-at-1 all the way. It's the *1st* thing! There's a 1 right in the name!
+If you've got a list that is really a list and not a vector that you're casually calling a "list," it's a little weirder. List objects look like a series of values, but they are actually a series of other lists. If you referenced the second element of a list object `ex_list` with `ex_list[2]`, you would get a list that contains the second element: `r ex_list[2]`.[^5] To get the actual value, you need to reference the index of the value within the list. For example, to reference the second element of a list object `ex_list`, you would write `ex_list[[2]]`: `r ex_list[[2]]`.
 
-If you've got a list that is really a list and not a vector that you're casually calling a "list," it's a little weirder. List objects look like a series of values, but they are actually a series of other lists. If you referenced the second element of a list object `ex_list` with `ex_list[2]`, you would get a list that contains the second element: `r ex_list[2]`.[^4] To get the actual value, you need to reference the index of the value within the list. For example, to reference the second element of a list object `ex_list`, you would write `ex_list[[2]]`: `r ex_list[[2]]`.
+[^5]: Quarto is actually smart enough to know you're trying to reference the value and not the list, so if you use this in your markdown it will knit to the value. But if you're actually using it for any kind of programming (not just printing directly), you'll need to use the correct data type.
 
-[^4]: Quarto is actually smart enough to know you're trying to reference the value and not the list, so if you use this in your markdown it will knit to the value. But if you're actually using it for any kind of programming (not just printing directly), you'll need to use the correct data type.
-
-You can reference values from a tibble in the same way you would reference values from a vector, but you have to index both the row and column. For example, to reference the value in the second row and third column of a tibble `ex_tibble`, you would write `ex_tibble[2, 3]`: `r ex_tibble[2, 3]`. 
+You can reference values from a tibble in the same way you would reference values from a vector, but you have to index both the row and column. For example, to reference the value in the second row and third column of a tibble `ex_tibble`, you would write `ex_tibble[2, 3]`: `r ex_tibble[2, 3]`.
 
 You can also use brackets to index by names. In a tibble, that usually means column/variable names, but you could use row names if your df has them. For example, to reference the value in the second row and the column named "mass" in a tibble `ex_tibble`, you would write `ex_tibble[2, "mass"]` to get the same as the above `ex_tibble[2,3]`: `r ex_tibble[2, "mass"]`.
 
-In your code, you'll often need to reference whole columns or rows, which you can do by omitting a value on either side of the comma. So to get the second row of `ex_tibble`, you would write `ex_tibble[2, ]`: `r ex_tibble[2, ]`. 
+In your code, you'll often need to reference whole columns or rows, which you can do by omitting a value on either side of the comma. So to get the second row of `ex_tibble`, you would write `ex_tibble[2, ]`: `r ex_tibble[2, ]`.
 
 You *can* call a tibble *row* in markdown and render it as text.
 
@@ -342,6 +425,105 @@ To get the column named "mass" from `ex_tibble`, you would write `ex_tibble[, "m
 You *cannot* call a tibble *column* in markdown and render it as text. (What would that even look like?)
 
 
-#### Issues
+### Tips and Tricks
+
+
+The **`apa_p()` function** from the `papaja` package can be used to format p-values in APA style. It handles rounding, and prevents the p-value from being displayed as `0.000` when it is very small. 
+
+Use the **`broom` package** to extract values from model objects. The `tidy()` function extracts coefficients and other values from a model object, and the `glance()` function extracts model-level statistics.
+
+**Store common text** as objects in your R script. This can be useful for text that is repeated throughout the document, especially if it's text that you may want to change later. For example, in the Language Development Project (a dataset I frequently work with) there are two cohorts of children. The first is a group of children who are "typically developing," and the second is a group of children with perinatal brain lesions. The latter group is referred to by a handful of different names depending on the context of the publication, e.g., "atypically developing", "perinatal brain lesion", "brain lesion", "brain injury", etc. I can store the variable `group2 <- "perinatal brain lesion"` and use it throughout the document. If I need to change the name of the group, I only need to reassign `group2 <- "brain injury"` in one place.
+
+**Write your own functions** for commonly reported results. For example, you can write a function that takes a model object as an argument and returns a string with the results of the model. This can be useful for reporting results in APA style.
+
+As an example, start by building a simple linear regression model with the `mtcars` dataset. Does vehicle weight predict fuel efficiency?
+
+```{r}
+#| label: simple-regression-example
+#| echo: true
+#| message: false
+#| warning: false
+
+# Create a simple linear regression model
+model <- lm(mpg ~ wt, data = mtcars)
+
+```
+
+We can use the `tidy()` function and the `apa_p()` function to extract and format the coefficients and p-values from the model object and print into a string.
+
+```{r}
+#| label: regression-report-functions
+#| echo: true
+#| message: false
+#| warning: false
+
+# report_regression takes a lm model object as an argument
+# and returns a string of format:
+# "$F$(df, df.residual) = F-value, $p$ = p-value, $R^2$ = r-squared"
+report_regression <- function(model) {
+    
+  # Extract coefficients and p-values
+  m_glance <- glance(model)
+
+  # Format the p-value
+  p_value <- apa_p(m_glance$p.value, add_equals = TRUE)
+  
+  # Create a string with the results
+  report <- paste0("$F$(", 
+                   m_glance$df, 
+                   ", ", m_glance$df.residual, 
+                   ") = ", round(m_glance$statistic, 2), 
+                   ", $p$ = ", p_value, ", $R^2$ = ", round(m_glance$r.squared,2))
+  
+  return(report)    
+    
+}
+
+
+# report_beta takes a lm model object and a variable name (string) as arguments
+# and returns a string of format:
+# "beta = beta-value, se = se-value, p = p-value"
+report_beta <- function(model, var) {
+      
+  # Extract coefficients and p-values
+  var_tidy <- tidy(model) %>% filter(term == var)
+  
+  # Format the p-value
+  p_value <- apa_p(var_tidy$p.value, add_equals = TRUE)
+  
+  # Create a string with the results
+  report <- paste0("$\\beta$ = ", round(var_tidy$estimate, 2),
+                   ", $se$ = ", round(var_tidy$std.error, 2),
+                   ", $p$ = ", p_value
+  )
+  
+  return(report)    
+}
+
+
+```
+
+Reporting the results of the regression model created in the previous chunk *with static text* would look like:
+
+A simple linear regression was conducted to predict fuel efficiency from vehicle weight. The model significantly predicted miles per gallon, *F*(1, 30) = 91.38, *p* < .001, R² = .75. Vehicle weight was a significant predictor (*β* = -5.34, *p* < .001), indicating that for each additional thousand pounds of weight, fuel efficiency decreased by 5.34 miles per gallon. 
+
+Reporting the results of the regression model created in the previous chunk *with inline R code* would look like:
+
+A simple linear regression was conducted to predict fuel efficiency from vehicle weight. The model significantly predicted miles per gallon, `r report_regression(model)`. Vehicle weight was a significant predictor (`r report_beta(model, "wt")`), indicating that for each additional thousand pounds of weight, fuel efficiency decreased by `r round(filter(tidy(model), term == "wt")$estimate, 2)*-1` miles per gallon.
+
+### Common Issues
+
+Are you getting errors referring to packages, installation, CRAN, or other library-related things? First check that all necessary packages are installed on your system. Then check that nothing in your document *or sourced files* includes code that would prompt R to install or update a package that is already loaded. It's good practice to load all necessary packages at the beginning of your document. If your code requires uncommon or non-CRAN packages that a user is likely to need to install before running, include a comment noting that at the beginning of your document. Optionally (and required in D2MR), include a **commented out** line of code that will install the package if it is not already installed *if the user chooses to uncomment the line.*
 
 Something knitting in a way you didn't expect? Check that the class of your output is what you think it should be. In particular, if you want something to appear as regular-old in-line text, it needs to be a *value* data type, like numeric, character, or logical. The `cor()` function, for example, results in a simple numeric value, while the `cor.test()` function results in an "htest" object. That object contains numeric values you can extract and reference, but if you try to reference it directly it won't knit.
+
+Are inline references to tables, figures, sections, or citations rendering as "??" and/or the literal reference in bold (e.g., "Figure **??**" or **smith2017??**)? Check that the key you're using is identical to the chunk label or bibtex citation key. Did you use the `fig-` or `tab-` prefix for both the chunk label and the reference? Did you use the `@` symbol before the citation key? Did a Zotero update the citation key format in your .bib file?
+
+Tables or figures being weird or not displaying at all? Tables are the worst, and there's a lot of things that can go wrong with them. Figures aren't as bad, but still prone to many of the same problems. The first things to check are:
+
+1.  Did you use the `tbl-` / `fig-` prefix in the chunk label?
+2.  Did you include the `tbl-cap` / `fig-cap` option in the chunk?
+3.  Is your chunk actually returning a table/figure at all, or is it assigning the table/figure to an object that you didn't actual call in the chunk?
+4.  Is the chunk returning HTML, LaTeX, or text in any other format or markup language? Add `results = "asis"` to the chunk header to ensure that the output is rendered "as-is," i.e., actually processing the markup rather than displaying the literal output. (Personally I find this very counterintuitive. Wouldn't it make more sense if "asis" meant "don't process the markup"? Is what it is.) 
+
+If you're still having trouble, try running the chunk in a separate R script to see if it's a problem with the chunk or with the document. If it runs fine in the script, try running the script in the document to see if it's a problem with the chunk options or the document structure.
