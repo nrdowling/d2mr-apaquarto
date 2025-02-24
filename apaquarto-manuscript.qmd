@@ -99,9 +99,13 @@ library(flextable)
 library(ftExtra)
 library(knitr)
 library(broom)
+
+# In addition to strategically ordering your library calls, 
+# you can use the conflicts_prefer function to specify which 
+# package's function to use when there are multiple options.
 conflicts_prefer(dplyr::filter, .quiet = TRUE)
 conflicts_prefer(flextable::separate_header, .quiet = TRUE)
-conflicts_prefer(flextable::theme_apa, .quiet = TRUE)
+conflicts_prefer(flextable::theme_apa, .quiet = TRUE) # we know that we never want the papaja one!
 
 # Set seed
 set.seed(1234)
@@ -235,6 +239,57 @@ There are several important things to note about the simple figure chunk above:
 2.  The first chunk option, label, is in the line *immediately following the chunk header*. This is important for the table to be recognized as a table. If there is anything above the label, including comments and whitespace, the table will not render as a table and the document may not render at all without error
 3.  The label begins with "tbl-", which tells apaquarto that this is a table. If the chunk has any other name, it will still render images in the chunk (including generated plots), but they will not be recognized as tables.
 4.  The caption in the `tbl-cap` option. As discussed above, this "caption" is the title of the table and should be in title case, with no period.
+5.  The `apa-note` *apaquarto specific* option is a note that appears below a table or figure (the chunk option can be used in with either). This is the explanatory text that you might think of as a "caption" in other contexts. When rendered, "*Note.*" will appear before the note text; do not add "Note" to the text of the note.
+
+While there are many approaches to creating tables, the apaquarto extension works well with the flextable package. As you can see in @tbl-iris, `theme_apa()` function from the flextable package will format tables to APA style. It's not always perfect, but it's very close. Given that this is a very simple process, it's the best "bang for your buck," so to speak, in terms of effort and output. The process is simply:
+
+1.  Create a table using any method you like. The flextable package works well with tibbles, but you can use any method you like.
+2.  Pipe the table/tibble into `flextable()`.
+3.  Pipe the flextable into `flextable::theme_apa()`. The `flextable::` prefix is not required, but is recommended to avoid confusion with the `theme_apa()` function for ggplots from the papaja package, which is not compatible with the apaquarto extension.
+
+```{r}
+#| label: tbl-mtcars-flextable
+#| tbl-cap: "Mtcars Data Summary Data"
+#| apa-note: The mtcars dataset is a classic dataset in R.
+
+mtcars %>% 
+    # Do some simple summary stats on the mtcars data
+    group_by(cyl) %>%
+    summarise(
+        mean_mpg = mean(mpg),
+        sd_mpg = sd(mpg),
+        n = n()
+    ) %>%
+    # Rename the column headers
+    rename(
+        "Cylinders" = cyl,
+        "MPG (mean)" = mean_mpg,
+        "MPG (sd)" = sd_mpg,
+        "N" = n
+    ) %>%
+    # Turn into a flextable object
+    flextable() %>% 
+    # Format to APA style
+    flextable::theme_apa()
+
+```
+For relatively simple analysis output, you can use the `broom` package to create tibbles from model output. For example, here I run a linear regression and then use `broom::tidy()` to create a tibble of the model output.
+
+```{r}
+#| label: tbl-mtcars-lm
+#| tbl-cap: "Mtcars Data Linear Model"
+#| apa-note: The broom package creates tidy regression output.
+
+mtcars_lm <- lm(mpg ~ wt + hp, data = mtcars)
+mtcars_lm %>% 
+    broom::tidy() %>%
+    flextable() %>% 
+    flextable::theme_apa()
+```
+
+More complex analysis output may require more complex solutions. The `stargazer` package is designed to create tables from model output, but those tables need tweaking to be APA style. 
+
+The `apaTables` package is designed for precisely this purpose (rendering APA-publication-ready output for common psych analyses), but I have found it to be unreliable and occasionally even produce fatal R errors that crash the whole R session in addition to the render.
 
 ## Results
 
