@@ -50,11 +50,14 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-# Rendered files
+# Rendered & render files
 *.html
 *.pdf
 *_files
 *.tex
+*.fff
+*.ttt
+*.log
 
 # Local and instructor only docs
 localonly/

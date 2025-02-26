@@ -66,26 +66,45 @@ language:
 #  title-impact-statement: "Impact Statement"
   references-meta-analysis: "References marked with an asterisk indicate studies included in the meta-analysis."
 format:
-  apaquarto-html: default
-  apaquarto-docx: default
-  apaquarto-typst: 
-    keep-typ: true
-    list-of-figures: true
-    list-of-tables: true
-    toc: true
+  #apaquarto-html: default
+  #apaquarto-docx: default
+  #apaquarto-typst: 
+    #keep-typ: true
+    #toc: true
   apaquarto-pdf:
     # Can be jou (journal), man (manuscript), stu (student), or doc (document)
     documentmode: man
-    keep-tex: true
+    #keep-tex: true
     # You can turn these off for a simple document
     # But you probably want them for a thesis or chapter
-    list-of-figures: true
-    list-of-tables: true
+    #lof: true
+    #lot: true
     # Change default output size of figures unless specified in the chunk
     fig-width: 2
     fig-height: 2
     out-width: 40%
+    # Leave both of these as false unless you want to add 
+    # a list of figures and/or tables, in which case 
+    # set these to false and see comment below
+    dontrepeattitle: false
+    suppress-title-introduction: false
 ---
+
+<!-- In APA7, the title is printed as the first-level heading at the beginning of the introduction. If you want to include lists of figures or tables, you need to manually suppress this then manually add it back in the introduction. Set both `dontrepeattitle` and `suppress-title-introduction` to true. Then, in the introduction, add the title as a first-level heading. -->
+
+<!-- These lines of latex 1) add a list of figures, 2) add a list of tables, and 3) add the title as a first-level heading before your intro. Uncomment them if you want to include these in your document. Leave them commented or delete them if you don't want lists. -->
+
+<!-- \clearpage -->
+<!-- \listoffigures -->
+
+<!-- \clearpage -->
+<!-- \listoftables -->
+
+<!-- \clearpage -->
+<!-- \begingroup -->
+<!-- \bfseries\centering -->
+<!-- \makeatletter\@title\makeatother\par -->
+<!-- \endgroup -->
 
 ```{r}
 #| label: setup
@@ -113,7 +132,9 @@ papaja::r_refs(file = "r-references.bib")
 
 ```
 
-## Introduction
+
+
+<!-- In APA format, the introduction does not begin with a heading. The title will be printed at the top of the page, which serves as the first-level heading. -->
 
 This document is a template demonstrating the apaquarto format, to be used in the course From Data to Manuscript in R [@dowling_2025_data]. It includes examples of how to create figures and tables, as well as how to reference them in the text. The document is written in Quarto, a system for creating documents with R Markdown. The apaquarto extension provides a template for creating APA7-formatted manuscripts.
 
@@ -126,7 +147,7 @@ The example demonstrates the mechanics of markdown manuscripts using Quarto and 
 Your introduction should be a clear and concise explanation of the research question, the background of the problem, and the purpose of the study. 
 It should include both a [Literature Review](#sec-lit-review) and [Present Study](#sec-present-study) section. 
 
-### Literature Review {#sec-lit-review}
+## Literature Review {#sec-lit-review}
 
 The literature review includes citations to relevant research and other sources. 
 Citing sources requires formatting according to some standardized style, like APA or Chicago Manual of Style.
@@ -173,11 +194,11 @@ Briefly, brackets say the whole thing (whatever that may be) should be in parent
 
 <!-- [^2]: These two numbered references for the Discussion and References sections are generated dynamically by including a section label `{#whatever}` in the markdown header for the section. -->
 
-### Present Study {#sec-present-study}
+## Present Study {#sec-present-study}
 
 The present "study" is a demonstration of the capabilities of the apaquarto extension for Quarto. It's not a study, but whatever. This is the present study section.
 
-## Methods
+# Methods
 
 In this section, we will go over how to create, render, and reference tables in apaquarto documents. 
 
@@ -236,13 +257,13 @@ There are several important things to note about the simple figure chunk above:
 3.  The label begins with "tbl-", which tells apaquarto that this is a table. If the chunk has any other name, it will still render images in the chunk (including generated plots), but they will not be recognized as tables.
 4.  The caption in the `tbl-cap` option. As discussed above, this "caption" is the title of the table and should be in title case, with no period.
 
-## Results
+# Results
 
 <!-- This section will feature use of figures. -->
 
 Figures can be created in R chunks and rendered as figures in the text. They can be referenced in the text and will be numbered in the order they are rendered.
 
-### Figure Chunk Options
+## Figure Chunk Options
 
 Figure chunks should use the quarto-preferred "comment style" chunk option settings. Minimally, they should include a label and a caption. The label should begin with "fig-" to be recognized as a figure. The caption should be a string in title case. The image (file or object) should be rendered in the chunk.
 
@@ -321,7 +342,7 @@ ggplot(iris, aes(x = Petal.Length, y = Petal.Width)) +
 
 You can see all the effects of these chunk options in @fig-plot-more-options. The figure is aligned to the right, has a width of 5 inches and a height of 6 inches, and has a note below the caption. The short caption is what will appear in the list of figures, and the alt text will appear when a reader mouses over the figure in an HTML document (it does not do anything in pdf or Word documents).
 
-#### Referencing figures
+### Referencing figures
 
 As seen in the text above, figures can be referenced in text using the `@` symbol followed by the figure label. This will render as "Figure X" in the rendered document, where X is the order in which the figure was rendered. The figure label should be unique and begin with "fig-" to be recognized as a figure.
 
@@ -369,7 +390,7 @@ Love a good xkcd. They're all great, but right now @fig-xkcd-git really speaks t
 
 I have a point. Notice that the numbers assigned to each figure are based on the order in which they are rendered, not the order in which they are referenced.
 
-### Analyses & Inline Code
+## Analyses & Inline Code
 
 In this section, we discuss running and referencing statistical analyses.
 
@@ -385,7 +406,7 @@ The general format for inline R is a backtick[^3], then a space, then as much co
 
 `` `r knitr::inline_expr("yourCodeHere()")` ``
 
-#### Referencing values from lists and tibbles
+### Referencing values from lists and tibbles
 
 In the following chunk, I create a vector, a list, and a tibble. These are basic R objects you'll need to extract references from often.
 
@@ -527,3 +548,12 @@ Tables or figures being weird or not displaying at all? Tables are the worst, an
 4.  Is the chunk returning HTML, LaTeX, or text in any other format or markup language? Add `results = "asis"` to the chunk header to ensure that the output is rendered "as-is," i.e., actually processing the markup rather than displaying the literal output. (Personally I find this very counterintuitive. Wouldn't it make more sense if "asis" meant "don't process the markup"? Is what it is.) 
 
 If you're still having trouble, try running the chunk in a separate R script to see if it's a problem with the chunk or with the document. If it runs fine in the script, try running the script in the document to see if it's a problem with the chunk options or the document structure.
+
+<!-- In APA7, the References section starts on a new page. apaquarto should handle this, but it's inconsistent. Adding the \clearpage latex command forces a new page.  -->
+
+\clearpage
+
+# References
+
+::: {#refs}
+:::
